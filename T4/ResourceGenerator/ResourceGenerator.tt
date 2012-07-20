@@ -3,13 +3,13 @@
 #><#@ output extension=".log"
 #><# var manager = Manager.Create(Host, GenerationEnvironment);
 
-foreach(var resource in Resources.Named(new [] { "Sample" }, Path.GetDirectoryName(Host.TemplateFile))) {
+foreach(var resource in Resources.Named(new [] { "Sample" }, Path.GetDirectoryName(Host.TemplateFile), ".resx")) {
     manager.StartNewFile(resource.Name + ".generated.cs");
 #>namespace <#=manager.DefaultProjectNamespace#>
 {
 	using System;
     
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("T4 based resource generator", "0.1")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     internal class <#=resource.Name#>
     {

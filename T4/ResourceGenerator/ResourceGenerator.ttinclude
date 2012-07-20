@@ -19,9 +19,9 @@
 #><#+
 
 class Resources {
-    public static IEnumerable<Resource> Named(string[] resourceNames, string path) {
+    public static IEnumerable<Resource> Named(string[] resourceNames, string path, string extension) {
         foreach(var resourceName in resourceNames)
-            yield return new Resource(resourceName, Path.Combine(path, resourceName + ".resx"));
+            yield return new Resource(resourceName, Path.Combine(path, resourceName + extension));
     }
 
     public class Resource {
