@@ -16,6 +16,8 @@
 #><#@ import namespace="System.Xml.Linq"
 #><#@ import namespace="Microsoft.VisualStudio.TextTemplating"
 #><#+
+// https://raw.github.com/damieng/DamienGKit
+// http://damieng.com/blog/2009/11/06/multiple-outputs-from-t4-made-easy-revisited
 
 // Manager class records the various blocks so it can split them up
 class Manager {
@@ -59,7 +61,7 @@ class Manager {
         currentBlock = null;
     }
 
-    public virtual void Process(bool split) {
+    public virtual void Process(bool split, bool sync = true) {
         if (split) {
             EndBlock();
             String headerText = template.ToString(header.Start, header.Length);
@@ -125,11 +127,12 @@ class Manager {
             return dte.Solution.FindProjectItem(fileName).Properties.Item("CustomToolNamespace").Value.ToString();
         }
 
-        public override void Process(bool split) {
+        public override void Process(bool split, bool sync) {
             if (templateProjectItem.ProjectItems == null)
                 return;
-            base.Process(split);
-            projectSyncAction.EndInvoke(projectSyncAction.BeginInvoke(generatedFileNames, null, null));
+            base.Process(split, sync);
+            if (sync)
+                projectSyncAction.EndInvoke(projectSyncAction.BeginInvoke(generatedFileNames, null, null));
         }
 
         protected override void CreateFile(String fileName, String content) {
