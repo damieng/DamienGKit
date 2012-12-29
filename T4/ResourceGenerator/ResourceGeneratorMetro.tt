@@ -30,7 +30,7 @@ foreach(var resource in Resources.Named(new [] { "Sample" }, Path.GetDirectoryNa
         
 <#      foreach(var entry in resource.Entries) {#>
         /// <summary>
-        ///   Looks up a localized string similar to <#=entry.Value#>.
+        ///   Looks up a localized string similar to <#=entry.Value.Replace("\r", "").Replace("\n", "")#>.
         /// </summary>
         internal static string <#=entry.PropertyName#> { get { return ResourceLoader.GetString("<#=entry.KeyName#>"); } }
 <#      } #>
