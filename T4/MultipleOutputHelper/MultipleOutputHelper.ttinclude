@@ -24,6 +24,7 @@ class Manager {
     private class Block {
         public String Name;
         public int Start, Length;
+        public bool IncludeInDefault;
     }
 
     private Block currentBlock;
@@ -44,12 +45,14 @@ class Manager {
         CurrentBlock = new Block { Name = name };
     }
 
-    public void StartFooter() {
+    public void StartFooter(bool includeInDefault = true) {
         CurrentBlock = footer;
+        footer.IncludeInDefault = includeInDefault;
     }
 
-    public void StartHeader() {
+    public void StartHeader(bool includeInDefault = true) {
         CurrentBlock = header;
+        header.IncludeInDefault = includeInDefault;
     }
 
     public void EndBlock() {
@@ -68,6 +71,8 @@ class Manager {
             String footerText = template.ToString(footer.Start, footer.Length);
             String outputPath = Path.GetDirectoryName(host.TemplateFile);
             files.Reverse();
+            if (!footer.IncludeInDefault)
+                template.Remove(footer.Start, footer.Length);
             foreach(Block block in files) {
                 String fileName = Path.Combine(outputPath, block.Name);
                 String content = headerText + template.ToString(block.Start, block.Length) + footerText;
@@ -75,6 +80,8 @@ class Manager {
                 CreateFile(fileName, content);
                 template.Remove(block.Start, block.Length);
             }
+            if (!header.IncludeInDefault)
+                template.Remove(header.Start, header.Length);
         }
     }
 
