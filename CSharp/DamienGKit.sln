@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DamienG.Library", "DamienG.Library\DamienG.Library.csproj", "{678C5C16-2D7D-4CC8-BEF2-29BB65E311B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DamienG.Tests", "DamienG.Tests\DamienG.Tests.csproj", "{8C992D80-131C-45F6-86A1-61FB6E2E847A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Default|Any CPU = Default|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{678C5C16-2D7D-4CC8-BEF2-29BB65E311B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{678C5C16-2D7D-4CC8-BEF2-29BB65E311B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{678C5C16-2D7D-4CC8-BEF2-29BB65E311B5}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{678C5C16-2D7D-4CC8-BEF2-29BB65E311B5}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{678C5C16-2D7D-4CC8-BEF2-29BB65E311B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{678C5C16-2D7D-4CC8-BEF2-29BB65E311B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C992D80-131C-45F6-86A1-61FB6E2E847A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C992D80-131C-45F6-86A1-61FB6E2E847A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C992D80-131C-45F6-86A1-61FB6E2E847A}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C992D80-131C-45F6-86A1-61FB6E2E847A}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{8C992D80-131C-45F6-86A1-61FB6E2E847A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C992D80-131C-45F6-86A1-61FB6E2E847A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = DamienG.Tests\DamienG.Tests.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		$0.TextStylePolicy = $2
+		$2.inheritsSet = null
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.BeforeMethodCallParentheses = False
+		$3.BeforeMethodDeclarationParentheses = False
+		$3.BeforeConstructorDeclarationParentheses = False
+		$3.BeforeDelegateDeclarationParentheses = False
+		$3.NewParentheses = False
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/x-csharp
+		$3.scope = text/x-csharp
+		$0.TextStylePolicy = $4
+		$4.FileWidth = 120
+		$4.TabWidth = 4
+		$4.inheritsSet = Mono
+		$4.inheritsScope = text/plain
+		$4.scope = text/plain
+		$0.StandardHeader = $5
+		$5.Text = 
+		$5.inheritsSet = MITX11License
+		$0.VersionControlPolicy = $6
+		$6.inheritsSet = Mono
+		$0.ChangeLogPolicy = $7
+		$7.UpdateMode = None
+		$7.MessageStyle = $8
+		$8.LineAlign = 0
+		$7.inheritsSet = Mono
+	EndGlobalSection
+EndGlobal
