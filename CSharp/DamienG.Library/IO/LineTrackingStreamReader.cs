@@ -3,6 +3,9 @@ using System.IO;
 
 namespace DamienG.IO
 {
+    /// <summary>
+    /// A StreamReader that adds line number and character position tracking.
+    /// </summary>
     public class LineTrackingStreamReader : StreamReader
     {
         public LineTrackingStreamReader(Stream stream)

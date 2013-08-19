@@ -4,6 +4,10 @@ using System.Linq;
 
 namespace DamienG.System
 {
+    /// <summary>
+    /// Strongly typed version of Enum with Parsing and performance improvements.
+    /// </summary>
+    /// <typeparam name="T">Type of Enum</typeparam>
     public static class Enum<T> where T : struct
     {
         private static readonly IEnumerable<T> all = Enum.GetValues(typeof (T)).Cast<T>();

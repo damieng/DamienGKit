@@ -6,17 +6,21 @@ using System.Xml;
 
 namespace DamienG.Web.Mvc
 {
+    /// <summary>
+    /// ActionResult for System.Web.Mvc that turns SyndicationFeedFormatter into
+    /// a RSS/Atom feed.
+    /// </summary>
     public class FeedResult : ActionResult
     {
         private readonly SyndicationFeedFormatter feed;
+
+        public Encoding ContentEncoding { get; set; }
+        public string ContentType { get; set; }
 
         public FeedResult(SyndicationFeedFormatter feed)
         {
             this.feed = feed;
         }
-
-        public Encoding ContentEncoding { get; set; }
-        public string ContentType { get; set; }
 
         public SyndicationFeedFormatter Feed
         {

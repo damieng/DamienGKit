@@ -2,6 +2,9 @@ using System;
 
 namespace DamienG.System
 {
+    /// <summary>
+    /// Various extension for Date related classes.
+    /// </summary>
     public static class DateExtensions
     {
         public static int GetAge(this DateTime birthDate)

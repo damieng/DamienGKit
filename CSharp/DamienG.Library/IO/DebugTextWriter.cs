@@ -5,6 +5,9 @@ using System.Text;
 
 namespace DamienG.IO
 {
+    /// <summary>
+    /// A TextWriter that writes to the Debug window.
+    /// </summary>
     public class DebugTextWriter : TextWriter
     {
         public override Encoding Encoding

@@ -4,12 +4,14 @@ using System.Linq;
 
 namespace DamienG.System
 {
+    /// <summary>
+    /// Various LINQ extensions for IEnumerable sequences.
+    /// </summary>
     public static class LinqExtensions
     {
         private static readonly Random random = new Random();
 
-        public static IEnumerable<T> OrderBySequence<T, TProperty>(this IEnumerable<T> source,
-                                                                   Func<T, TProperty> property, IEnumerable<TProperty> sequence)
+        public static IEnumerable<T> OrderBySequence<T, TProperty>(this IEnumerable<T> source, Func<T, TProperty> property, IEnumerable<TProperty> sequence)
         {
             var sequenceList = sequence.ToList();
             var sequenceDictionary = sequenceList.ToDictionary(s => s, sequenceList.IndexOf);

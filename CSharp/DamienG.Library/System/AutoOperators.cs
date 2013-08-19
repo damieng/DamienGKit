@@ -2,8 +2,10 @@ using System;
 
 namespace DamienG.System
 {
-    /// AutoOperators provides a base class where all the standard operators are overridden and
-    /// wired up via the subclass's implementation of IComparable.CompareTo.
+    /// <summary>
+    /// A base class that automatically provides all operator overloads based on your class
+    /// only implementing CompareTo.
+    /// </summary>
     public abstract class AutoOperators : IComparable
     {
         public abstract int CompareTo(object obj);

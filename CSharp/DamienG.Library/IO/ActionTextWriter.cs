@@ -4,6 +4,9 @@ using System.Text;
 
 namespace DamienG.IO
 {
+    /// <summary>
+    /// A TextWriter that can delegate the writing to any Action that takes a string.
+    /// </summary>
     public class ActionTextWriter : TextWriter
     {
         private readonly Action<string> action;

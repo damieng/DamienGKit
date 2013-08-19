@@ -3,6 +3,10 @@ using System.Runtime.InteropServices;
 
 namespace DamienG.System
 {
+    /// <summary>
+    /// Strongly-typed version of WeakReference that supports IEquatable too.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public sealed class EquatableWeakReference<T> : IEquatable<EquatableWeakReference<T>>, IDisposable where T : class
     {
         private readonly int hashCode;

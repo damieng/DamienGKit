@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace DamienG.Collections.Generic
 {
+    /// <summary>
+    /// A list that can be observed for change or clear events.
+    /// </summary>
+    /// <typeparam name="T">Type of items in the list.</typeparam>
     public class ObservableList<T> : IList<T>
     {
-        public delegate void ListChangedEventHandler(object sender, ListChangedEventArgs e);
-
-        public delegate void ListClearedEventHandler(object sender, EventArgs e);
-
         private readonly IList<T> internalList;
 
         public ObservableList()
@@ -51,7 +51,7 @@ namespace DamienG.Collections.Generic
             set
             {
                 if (internalList[index].Equals(value)) return;
-                
+
                 internalList[index] = value;
                 OnListChanged(new ListChangedEventArgs(index, value));
             }
@@ -110,11 +110,11 @@ namespace DamienG.Collections.Generic
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable) internalList).GetEnumerator();
+            return ((IEnumerable)internalList).GetEnumerator();
         }
 
-        public event ListChangedEventHandler ListChanged;
-        public event ListClearedEventHandler ListCleared;
+        public event EventHandler<ListChangedEventArgs> ListChanged;
+        public event EventHandler ListCleared;
 
         protected virtual void OnListChanged(ListChangedEventArgs e)
         {

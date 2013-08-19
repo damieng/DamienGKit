@@ -4,6 +4,9 @@ using System.Text;
 
 namespace DamienG.IO
 {
+    /// <summary>
+    /// A TextWriter that can multicast output to other TextWriters.
+    /// </summary>
     public class MulticastTextWriter : TextWriter
     {
         private readonly IList<TextWriter> textWriters;
