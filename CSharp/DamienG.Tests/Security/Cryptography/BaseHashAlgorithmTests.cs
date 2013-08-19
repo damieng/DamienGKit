@@ -3,9 +3,9 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DamienG.Tests.Cryptography
+namespace DamienG.Tests.Security.Cryptography
 {
-    public abstract class BaseCryptographyTests
+    public abstract class BaseHashAlgorithmTests
     {
         protected const string SimpleString = @"The quick brown fox jumps over the lazy dog.";
         protected readonly byte[] SimpleBytesAscii = Encoding.ASCII.GetBytes(SimpleString);

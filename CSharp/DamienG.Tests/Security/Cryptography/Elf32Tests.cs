@@ -1,10 +1,10 @@
 using DamienG.Security.Cryptography;
 using NUnit.Framework;
 
-namespace DamienG.Tests.Cryptography
+namespace DamienG.Tests.Security.Cryptography
 {
     [TestFixture]
-    public class Elf32Tests : BaseCryptographyTests
+    public class Elf32Tests : BaseHashAlgorithmTests
     {
         [Test]
         public void StaticDefaultSeedAndPolynomialWithShortAsciiString()
