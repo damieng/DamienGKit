@@ -1,3 +1,7 @@
+// Copyright (c) Damien Guard.  All rights reserved.
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. 
+// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +27,7 @@ namespace DamienG.System
             if (page < 1 || pageSize < 1)
                 throw new ArgumentException("Must be 1 or greater", page < 1 ? "page" : "pageSize");
 
-            return source.Skip(--page*pageSize).Take(pageSize);
+            return source.Skip(--page * pageSize).Take(pageSize);
         }
 
         public static T ContainsOrDefault<T>(this IEnumerable<T> source, T value)

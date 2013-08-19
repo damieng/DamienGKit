@@ -1,3 +1,8 @@
+// Copyright (c) Damien Guard.  All rights reserved.
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. 
+// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+// Originally published at http://damieng.com/blog/2007/11/24/calculating-elf-32-in-c-and-net
+
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;

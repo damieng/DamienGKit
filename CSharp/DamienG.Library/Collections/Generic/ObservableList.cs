@@ -1,3 +1,8 @@
+﻿﻿// Copyright (c) Damien Guard.  All rights reserved.
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. 
+// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+// Originally published at http://damieng.com/blog/2006/06/14/observing_change_events_on_a_listt
+
 using System;
 using System.Collections;
 using System.Collections.Generic;

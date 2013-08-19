@@ -1,3 +1,8 @@
+// Copyright (c) Damien Guard.  All rights reserved.
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. 
+// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+// Originally published at http://damieng.com/blog/2010/04/26/creating-rss-feeds-in-asp-net-mvc
+
 using System;
 using System.ServiceModel.Syndication;
 using System.Text;
@@ -7,8 +12,7 @@ using System.Xml;
 namespace DamienG.Web.Mvc
 {
     /// <summary>
-    /// ActionResult for System.Web.Mvc that turns SyndicationFeedFormatter into
-    /// a RSS/Atom feed.
+    /// ActionResult for System.Web.Mvc that turns SyndicationFeedFormatter into a RSS/Atom feed.
     /// </summary>
     public class FeedResult : ActionResult
     {
