@@ -31,9 +31,8 @@ namespace DamienG.Security.Cryptography
         private UInt32 hash;
 
         public Crc32()
+            : this(DefaultPolynomial, DefaultSeed)
         {
-            table = InitializeTable(DefaultPolynomial);
-            seed = hash = DefaultSeed;
         }
 
         public Crc32(UInt32 polynomial, UInt32 seed)
@@ -63,12 +62,12 @@ namespace DamienG.Security.Cryptography
         
         public static UInt32 Compute(byte[] buffer)
         {
-            return ~CalculateHash(InitializeTable(DefaultPolynomial), DefaultSeed, buffer, 0, buffer.Length);
+            return Compute(DefaultSeed, buffer);
         }
 
         public static UInt32 Compute(UInt32 seed, byte[] buffer)
         {
-            return ~CalculateHash(InitializeTable(DefaultPolynomial), seed, buffer, 0, buffer.Length);
+            return Compute(DefaultPolynomial, seed, buffer);
         }
 
         public static UInt32 Compute(UInt32 polynomial, UInt32 seed, byte[] buffer)
