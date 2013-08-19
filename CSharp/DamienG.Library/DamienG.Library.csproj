@@ -71,7 +71,7 @@
     <Compile Include="IO\MulticastTextWriter.cs" />
     <Compile Include="IO\ActionTextWriter.cs" />
     <Compile Include="Collections\Generic\ObservableList.cs" />
-    <Compile Include="System\WeakReferenceT.cs" />
+    <Compile Include="System\EquatableWeakReference.cs" />
     <Compile Include="IO\LineTrackingStreamReader.cs" />
     <Compile Include="Web\Mvc\FeedResult.cs" />
   </ItemGroup>
