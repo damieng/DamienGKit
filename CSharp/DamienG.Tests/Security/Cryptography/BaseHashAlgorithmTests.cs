@@ -20,9 +20,7 @@ namespace DamienG.Tests.Security.Cryptography
         {
             var pathToTests = Path.Combine(Path.Combine(RunFolder, @"Security\Cryptography"), "TestFiles");
             using(var stream = File.Open(Path.Combine(pathToTests, name), FileMode.Open))
-            {
                 return hashAlgorithm.ComputeHash(stream);
-            }
         }
         
         protected static UInt32 GetBigEndianUInt32(byte[] bytes)
@@ -34,6 +32,17 @@ namespace DamienG.Tests.Security.Cryptography
                 Array.Reverse(bytes);
             
             return BitConverter.ToUInt32(bytes, 0);
+        }
+
+        protected static UInt64 GetBigEndianUInt64(byte[] bytes)
+        {
+            if (bytes.Length != 8)
+                throw new ArgumentOutOfRangeException("bytes", "Must be 8 bytes in length");
+
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(bytes);
+
+            return BitConverter.ToUInt64(bytes, 0);
         }
     }
 }

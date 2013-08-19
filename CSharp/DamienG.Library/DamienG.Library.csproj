@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Security\Cryptography\Crc32.cs" />
+    <Compile Include="Security\Cryptography\Crc64.cs" />
     <Compile Include="Security\Cryptography\Elf32.cs" />
     <Compile Include="System\AutoOperators.cs" />
     <Compile Include="System\DateExtensions.cs" />

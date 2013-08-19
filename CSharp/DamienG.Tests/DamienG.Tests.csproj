@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Security\Cryptography\BaseHashAlgorithmTests.cs" />
+    <Compile Include="Security\Cryptography\Crc64bTests.cs" />
     <Compile Include="Security\Cryptography\Crc32Tests.cs" />
     <Compile Include="Security\Cryptography\Elf32Tests.cs" />
     <Compile Include="IO\ActionTextWriterTests.cs" />
