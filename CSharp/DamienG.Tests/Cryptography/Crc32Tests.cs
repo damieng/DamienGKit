@@ -1,28 +1,33 @@
-using System;
-using System.IO;
-using System.Text;
-using NUnit.Framework;
 using DamienG.Security.Cryptography;
+using NUnit.Framework;
 
 namespace DamienG.Tests.Cryptography
 {
-	[TestFixture]
-	public class CRC32Tests : BaseCryptographyTests
-	{
-		[Test]
-		public void Static_Default_Seed_And_Polynomial_With_Short_ASCII_String()
-		{
-			UInt32 actual = Crc32.Compute(simpleBytesASCII);
-			
-			Assert.AreEqual(0x519025e9, actual);
-		}
-		
-		[Test]
-		public void Instance_Default_Seed_And_Polynomial_With_12K_Binary_File()
-		{
-			byte[] hash = GetTestFileHash(binary12kFileName, new Crc32());
-			
-			Assert.AreEqual(0x9865b070, GetBigEndianUInt32(hash));
-		}
-	}
+    [TestFixture]
+    public class Crc32Tests : BaseCryptographyTests
+    {
+        [Test]
+        public void StaticDefaultSeedAndPolynomialWithShortAsciiString()
+        {
+            var actual = Crc32.Compute(SimpleBytesAscii);
+
+            Assert.AreEqual(0x519025e9, actual);
+        }
+
+        [Test]
+        public void StaticDefaultSeedAndPolynomialWithShortAsciiString2()
+        {
+            var actual = Crc32.Compute(SimpleBytes2Ascii);
+
+            Assert.AreEqual(0x6ee3ad88, actual);
+        }
+
+        [Test]
+        public void InstanceDefaultSeedAndPolynomialWith12KBinaryFile()
+        {
+            var hash = GetTestFileHash(Binary12KFileName, new Crc32());
+
+            Assert.AreEqual(0x9865b070, GetBigEndianUInt32(hash));
+        }
+    }
 }

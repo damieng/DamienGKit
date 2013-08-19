@@ -54,6 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Cryptography\BaseCryptographyTests.cs" />
+    <Compile Include="Cryptography\Crc32Tests.cs" />
+    <Compile Include="Cryptography\Elf32Tests.cs" />
     <Compile Include="IO\ActionTextWriterTests.cs" />
     <Compile Include="System\LinqExtensionsTests.cs" />
     <Compile Include="System\EnumTTests.cs" />
@@ -86,5 +89,9 @@
       <Name>DamienG.Library</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Cryptography\TestFiles\binary12K.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
