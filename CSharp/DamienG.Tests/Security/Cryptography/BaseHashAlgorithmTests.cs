@@ -18,10 +18,18 @@ namespace DamienG.Tests.Security.Cryptography
         
         protected byte[] GetTestFileHash(string name, HashAlgorithm hashAlgorithm)
         {
-            var pathToTests = Path.Combine(Path.Combine(RunFolder, @"Security\Cryptography"), "TestFiles");
+			var pathToTests = CombinePaths(RunFolder, "Security", "Cryptography", "TestFiles");
             using(var stream = File.Open(Path.Combine(pathToTests, name), FileMode.Open))
                 return hashAlgorithm.ComputeHash(stream);
         }
+
+		private string CombinePaths(string baseFolder, params string[] folders)
+		{
+			var result = baseFolder;
+			foreach (var folder in folders)
+				result = Path.Combine(result, folder);
+			return result;
+		}
         
         protected static UInt32 GetBigEndianUInt32(byte[] bytes)
         {
