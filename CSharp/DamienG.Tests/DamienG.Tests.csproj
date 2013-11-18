@@ -67,6 +67,8 @@
     <Compile Include="System\AutoOperatorsTests.cs" />
     <Compile Include="System\DateExtensionsTests.cs" />
     <Compile Include="IO\LineTrackingStreamReaderTests.cs" />
+    <Compile Include="Security\Binary\HexEncodingTests.cs" />
+    <Compile Include="Security\Binary\QuotedPrintableTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -96,5 +98,8 @@
     <Content Include="Security\Cryptography\TestFiles\binary12K.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Security\Binary\" />
   </ItemGroup>
 </Project>

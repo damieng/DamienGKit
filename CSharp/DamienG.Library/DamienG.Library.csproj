@@ -77,6 +77,9 @@
     <Compile Include="System\EquatableWeakReference.cs" />
     <Compile Include="IO\LineTrackingStreamReader.cs" />
     <Compile Include="Web\Mvc\FeedResult.cs" />
+    <Compile Include="System\Binary\HexEncoding.cs" />
+    <Compile Include="System\Binary\QuotedPrintable.cs" />
+    <Compile Include="System\Binary\BinaryTextEncoding.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -95,5 +98,8 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="System\Binary\" />
   </ItemGroup>
 </Project>
