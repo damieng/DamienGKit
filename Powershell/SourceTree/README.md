@@ -12,17 +12,17 @@ in order to provide better integration with GitHub. They are:
 
 ## Installation
 
-Check out the scripts to somewhere convenient. 
+Check out the scripts to somewhere convenient, e.g. c:\scripts
 
 Go into *Tools > Options* in SourceTree for Windows then add new custom actions:
 
 
 Menu caption | Parameters
 -------------|-------------
-View commit on GitHub | -noprofile -file c:\source\damiengkit\powershell\sourcetree\view-commit-on-github.ps1 $REPO $SHA
-View file on GitHub | -noprofile -file c:\source\damiengkit\powershell\sourcetree\view-file-on-github.ps1 $FILE
-View file commit on GitHub | -noprofile -file c:\source\damiengkit\powershell\sourcetree\view-file-commit-on-github.ps1 $REPO $SHA $FILE
-View repo on GitHub | -noprofile -file c:\source\damiengkit\powershell\sourcetree\view-repo-on-github.ps1 $REPO
+View commit on GitHub | -noprofile -file c:\scripts\view-commit-on-github.ps1 $REPO $SHA
+View file on GitHub | -noprofile -file c:\scripts\view-file-on-github.ps1 $FILE
+View file commit on GitHub | -noprofile -file c:\scripts\view-file-commit-on-github.ps1 $REPO $SHA $FILE
+View repo on GitHub | -noprofile -file c:\scripts\view-repo-on-github.ps1 $REPO
 
 
 Each one should also specify:
