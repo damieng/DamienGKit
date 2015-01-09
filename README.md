@@ -6,6 +6,7 @@ This repository consists of various useful classes, templates and helpers from [
 
 * **CSharp** Useful classes in the C# language
 * **T4**	Various templates for the T4 templating system
+* **Powershell/SourceTree** Scripts to integrate SourceTree with GitHub
 
 ## Licence
 
