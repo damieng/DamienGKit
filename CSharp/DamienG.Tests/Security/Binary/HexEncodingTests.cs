@@ -1,13 +1,12 @@
 using System;
 using DamienG.System.Binary;
-using NUnit.Framework;
+using Xunit;
 
-namespace DamienG.Tests.System.Binary
+namespace DamienG.Tests.Security.Binary
 {
-    [TestFixture]
     public class HexEncodingTests
     {
-        [Test]
+        [Fact]
         public void EncodeReturnsEncodedString()
         {
             var unencoded = new byte[] { 0x10, 0x44, 0x00, 0xA3, 0xFF, 0xDE, 0x4E };
@@ -15,10 +14,10 @@ namespace DamienG.Tests.System.Binary
 
             var actual = new HexEncoding().Encode(unencoded);
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void DecodeGivenUppercaseHexReturnsDecodedBytes()
         {
             var expected = new byte[] { 0x10, 0x44, 0x00, 0xA3, 0xFF, 0xDE, 0x4E };
@@ -26,10 +25,10 @@ namespace DamienG.Tests.System.Binary
 
             var actual = new HexEncoding().Decode(text);
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void DecodeGivenLowercaseHexReturnsDecodedBytes()
         {
             var expected = new byte[] { 0x00, 0x44, 0xA3, 0xDE, 0x4E, 0xFF };
@@ -37,10 +36,10 @@ namespace DamienG.Tests.System.Binary
 
             var actual = new HexEncoding().Decode(text);
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void DecodeGivenMixedcaseHexReturnsDecodedBytes()
         {
             var expected = new byte[] { 0x44, 0xA3, 0xDE, 0x4E, 0xFF, 0x00 };
@@ -48,21 +47,19 @@ namespace DamienG.Tests.System.Binary
 
             var actual = new HexEncoding().Decode(text);
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [Fact]
         public void DecodeThrowsArgumentOutOfRangeIfUnevenLength()
         {
-            new HexEncoding().Decode("ED13A");
+            Assert.Throws<ArgumentOutOfRangeException>(() => new HexEncoding().Decode("ED13A"));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [Fact]
         public void DecodeThrowsArgumentOutOfRangeIfNotHex()
         {
-            new HexEncoding().Decode("ED13G2");
+            Assert.Throws<ArgumentOutOfRangeException>(() => new HexEncoding().Decode("ED13G2"));
         }
     }
 }

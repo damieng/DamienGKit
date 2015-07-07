@@ -1,5 +1,3 @@
-using System;
-
 namespace DamienG.System.Binary
 {
     public abstract class BinaryTextEncoding

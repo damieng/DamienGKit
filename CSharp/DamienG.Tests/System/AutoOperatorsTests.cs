@@ -1,41 +1,40 @@
 using System;
 using DamienG.System;
-using NUnit.Framework;
+using Xunit;
 
 namespace DamienG.Tests.System
 {
-    [TestFixture]
     public class AutoOperatorsTests
     {
-        [Test]
+        [Fact]
         public void CompareReturnsNegativeOneWhenFirstArgIsNullAndSecondIsNot()
         {
             var second = new InheritedTestClass<string>("Amiga");
 
             var comparison = AutoOperators.Compare(null, second);
 
-            Assert.AreEqual(-1, comparison);
+            Assert.Equal(-1, comparison);
         }
 
-        [Test]
+        [Fact]
         public void CompareReturnsPositiveOneWhenSecondArgIsNullAndFirstIsNot()
         {
             var first = new InheritedTestClass<string>("Amiga");
 
             var comparison = AutoOperators.Compare(first, null);
 
-            Assert.AreEqual(1, comparison);
+            Assert.Equal(1, comparison);
         }
 
-        [Test]
+        [Fact]
         public void CompareReturnsZeroWhenBothArgsNull()
         {
             var comparison = AutoOperators.Compare(null, null);
 
-            Assert.AreEqual(0, comparison);
+            Assert.Equal(0, comparison);
         }
 
-        [Test]
+        [Fact]
         public void CompareReturnsZeroWhenEqualValue()
         {
             var equal1 = new InheritedTestClass<string>("Amiga");
@@ -43,161 +42,161 @@ namespace DamienG.Tests.System
 
             var comparison = AutoOperators.Compare(equal1, equal2);
 
-            Assert.AreEqual(0, comparison);
+            Assert.Equal(0, comparison);
         }
 
-        [Test]
+        [Fact]
         public void CompareReturnsZeroWhenSameReference()
         {
             var same = new InheritedTestClass<string>("Amiga");
 
             var comparison = AutoOperators.Compare(same, same);
 
-            Assert.AreEqual(0, comparison);
+            Assert.Equal(0, comparison);
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsFalseWhenNotEqual()
         {
             var notEqual1 = new InheritedTestClass<int>(2521);
             var notEqual2 = new InheritedTestClass<int>(2);
 
-            Assert.IsFalse(notEqual1 == notEqual2);
+            Assert.False(notEqual1 == notEqual2);
         }
 
-        [Test]
+        [Fact]
         public void EqualsReturnsTrueWhenEqual()
         {
             var equal1 = new InheritedTestClass<int>(2521);
             var equal2 = new InheritedTestClass<int>(2521);
 
-            Assert.IsTrue(equal1 == equal2);
+            Assert.True(equal1 == equal2);
         }
 
-        [Test]
+        [Fact]
         public void GreaterThanOrEqualReturnsFalseWhenLessThan()
         {
             var lower = new InheritedTestClass<int>(500);
             var higher = new InheritedTestClass<int>(2000);
 
-            Assert.IsFalse(lower >= higher);
+            Assert.False(lower >= higher);
         }
 
-        [Test]
+        [Fact]
         public void GreaterThanOrEqualReturnsTrueWhenEqual()
         {
             var equal1 = new InheritedTestClass<int>(520);
             var equal2 = new InheritedTestClass<int>(520);
 
-            Assert.IsTrue(equal1 >= equal2);
+            Assert.True(equal1 >= equal2);
         }
 
-        [Test]
+        [Fact]
         public void GreaterThanOrEqualReturnsTrueWhenGreaterThan()
         {
             var lower = new InheritedTestClass<int>(720);
             var higher = new InheritedTestClass<int>(880);
 
-            Assert.IsTrue(higher >= lower);
+            Assert.True(higher >= lower);
         }
 
-        [Test]
+        [Fact]
         public void GreaterThanReturnsFalseWhenLessThan()
         {
             var lower = new InheritedTestClass<int>(252);
             var higher = new InheritedTestClass<int>(50809);
 
-            Assert.IsFalse(lower > higher);
+            Assert.False(lower > higher);
         }
 
-        [Test]
+        [Fact]
         public void GreaterThanReturnsTrueWhenGreaterThan()
         {
             var lower = new InheritedTestClass<int>(252);
             var higher = new InheritedTestClass<int>(50809);
 
-            Assert.IsTrue(higher > lower);
+            Assert.True(higher > lower);
         }
 
-        [Test]
+        [Fact]
         public void GreaterThanReturnsFalseWhenEqual()
         {
             var lower = new InheritedTestClass<int>(6508);
             var higher = new InheritedTestClass<int>(6508);
 
-            Assert.IsFalse(lower > higher);
+            Assert.False(lower > higher);
         }
 
-        [Test]
+        [Fact]
         public void LessThanOrEqualReturnsFalseWhenGreaterThan()
         {
             var lower = new InheritedTestClass<int>(25);
             var higher = new InheritedTestClass<int>(5009);
 
-            Assert.IsFalse(higher < lower);
+            Assert.False(higher < lower);
         }
 
-        [Test]
+        [Fact]
         public void LessThanOrEqualReturnsTrueWhenEqual()
         {
             var lower = new InheritedTestClass<int>(984);
             var higher = new InheritedTestClass<int>(984);
 
-            Assert.IsTrue(lower <= higher);
+            Assert.True(lower <= higher);
         }
 
-        [Test]
+        [Fact]
         public void LessThanOrEqualReturnsTrueWhenLessThan()
         {
             var lower = new InheritedTestClass<int>(123);
             var higher = new InheritedTestClass<int>(789);
 
-            Assert.IsTrue(lower <= higher);
+            Assert.True(lower <= higher);
         }
 
-        [Test]
+        [Fact]
         public void LessThanReturnsFalseWhenEqual()
         {
             var lower = new InheritedTestClass<int>(68000);
             var higher = new InheritedTestClass<int>(68000);
 
-            Assert.IsFalse(higher < lower);
+            Assert.False(higher < lower);
         }
 
-        [Test]
+        [Fact]
         public void LessThanReturnsFalseWhenGreaterThan()
         {
             var lower = new InheritedTestClass<int>(16);
             var higher = new InheritedTestClass<int>(4096);
 
-            Assert.IsFalse(higher < lower);
+            Assert.False(higher < lower);
         }
 
-        [Test]
+        [Fact]
         public void LessThanReturnsTrueWhenLessThan()
         {
             var lower = new InheritedTestClass<int>(4);
             var higher = new InheritedTestClass<int>(8);
 
-            Assert.IsTrue(lower < higher);
+            Assert.True(lower < higher);
         }
 
-        [Test]
+        [Fact]
         public void NotEqualsReturnsFalseWhenEqual()
         {
             var equal1 = new InheritedTestClass<int>(2521);
             var equal2 = new InheritedTestClass<int>(2521);
 
-            Assert.IsFalse(equal1 != equal2);
+            Assert.False(equal1 != equal2);
         }
 
-        [Test]
+        [Fact]
         public void NotEqualsReturnsTrueWhenNotEqual()
         {
             var notEqual1 = new InheritedTestClass<int>(2521);
             var notEqual2 = new InheritedTestClass<int>(2);
 
-            Assert.IsTrue(notEqual1 != notEqual2);
+            Assert.True(notEqual1 != notEqual2);
         }
     }
 

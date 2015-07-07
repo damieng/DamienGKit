@@ -3,24 +3,23 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using DamienG.System.Binary;
-using NUnit.Framework;
+using Xunit;
 
-namespace DamienG.Tests.System.Binary
+namespace DamienG.Tests.Security.Binary
 {
-    [TestFixture]
     public class QuotedPrintableTests
     {
-        [Test]
+        [Fact]
         public void EncodeGivenAsciiReturnsAsciiString()
         {
             var expected = "!ThisIsABasicTest^";
 
             var actual = new QuotedPrintable().Encode(Encoding.ASCII.GetBytes(expected));
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void EncodeEncodesTabsAndSpacesByDefault()
         {
             var text = "!This Is A Basic\tTest^";
@@ -28,10 +27,10 @@ namespace DamienG.Tests.System.Binary
 
             var actual = new QuotedPrintable().Encode(Encoding.ASCII.GetBytes(text));
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void EncodeDoesNotEncodeSpacesIfSpecified()
         {
             var text = "!This Is\tA Basic Test^";
@@ -39,10 +38,10 @@ namespace DamienG.Tests.System.Binary
 
             var actual = new QuotedPrintable(DoNotEncode.Space).Encode(Encoding.ASCII.GetBytes(text));
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void EncodeDoesNotEncodeTabsIfSpecified()
         {
             var text = "!This Is A Basic\tTest^";
@@ -50,10 +49,10 @@ namespace DamienG.Tests.System.Binary
 
             var actual = new QuotedPrintable(DoNotEncode.Tab).Encode(Encoding.ASCII.GetBytes(text));
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void EncodeDoesNotCreateLinesOver76CharsInLength()
         {
             var text = String.Join("-", Enumerable.Repeat("A quick brown fox ", 100));
@@ -61,10 +60,10 @@ namespace DamienG.Tests.System.Binary
             var actual = new QuotedPrintable(DoNotEncode.Space).Encode(Encoding.ASCII.GetBytes(text));
 
             using (var reader = new StringReader(actual))
-                Assert.That(reader.ReadLine().Length <= 76);
+                Assert.True(reader.ReadLine().Length <= 76);
         }
 
-        [Test]
+        [Fact]
         public void EncodeDoesNotEncodeTabsOrSpacesIfSpecified()
         {
             var text = "!This Is A Basic\tTest^";
@@ -72,20 +71,20 @@ namespace DamienG.Tests.System.Binary
 
             var actual = new QuotedPrintable(DoNotEncode.Tab & DoNotEncode.Space).Encode(Encoding.ASCII.GetBytes(text));
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void EncodePutsEqualsAtEndIfLastCharacterIsUnencodedSpace()
         {
             var text = "Line Ends With ";
 
             var actual = new QuotedPrintable(DoNotEncode.Space).Encode(Encoding.ASCII.GetBytes(text));
 
-            Assert.AreEqual(text + "=", actual);
+            Assert.Equal(text + "=", actual);
         }
 
-        [Test]
+        [Fact]
         public void EncodeDoesNotPutsEqualsAtEndIfLastCharacterEncoded()
         {
             var text = "Line Ends With ";
@@ -93,20 +92,20 @@ namespace DamienG.Tests.System.Binary
 
             var actual = new QuotedPrintable().Encode(Encoding.ASCII.GetBytes(text));
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void EncodePutsEqualsAtEndIfLastCharacterIsUnencodedTab()
         {
             var text = "LineEndsWith\t";
 
             var actual = new QuotedPrintable(DoNotEncode.Tab).Encode(Encoding.ASCII.GetBytes(text));
 
-            Assert.AreEqual(text + "=", actual);
+            Assert.Equal(text + "=", actual);
         }
 
-        [Test]
+        [Fact]
         public void EncodeEncodesEquals()
         {
             var text = "This=Is=A=Test";
@@ -114,10 +113,10 @@ namespace DamienG.Tests.System.Binary
 
             var actual = new QuotedPrintable().Encode(Encoding.ASCII.GetBytes(text));
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void EncodeGivenBinaryEncodesBinary()
         {
             var unencoded = new byte[] { 0x10, 0x44, 0x00, 0xA3, 0xFF, 0xDE, 0x4E };
@@ -125,10 +124,10 @@ namespace DamienG.Tests.System.Binary
 
             var actual = new QuotedPrintable().Encode(unencoded);
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void DecodeGivenAsciiReturnsAsciiBytes()
         {
             var text = "This is a cool test";
@@ -136,43 +135,41 @@ namespace DamienG.Tests.System.Binary
 
             var actual = new QuotedPrintable().Decode(text);
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void DecodeGivenMixReturnsDecodedBytes()
         {
             var text = "^Aa =20\t=09!";
-            var expected = new [] { 0x5E, 0x41, 0x61, 0x20, 0x20, 0x09, 0x09, 0x21 };
+            var expected = new byte[] { 0x5E, 0x41, 0x61, 0x20, 0x20, 0x09, 0x09, 0x21 };
 
             var actual = new QuotedPrintable().Decode(text);
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void DecodeIgnoresTrailingEquals()
         {
             var text = " A =";
-            var expected = new [] { 0x20, 0x41, 0x20 };
+            var expected = new byte[] { 0x20, 0x41, 0x20 };
 
             var actual = new QuotedPrintable().Decode(text);
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [Fact]
         public void DecodeThrowsArgumentOutOfRangeIfQuotedEndsBeforeCompletion()
         {
-            new QuotedPrintable().Decode("Dam=2");
+            Assert.Throws<ArgumentOutOfRangeException>(() => new QuotedPrintable().Decode("Dam=2"));
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [Fact]
         public void DecodeThrowsArgumentOutOfRangeIfNotHex()
         {
-            new QuotedPrintable().Decode("Dam=4G");
+            Assert.Throws<ArgumentOutOfRangeException>(() => new QuotedPrintable().Decode("Dam=4G"));
         }
     }
 }

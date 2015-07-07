@@ -1,33 +1,33 @@
+using System;
 using DamienG.Security.Cryptography;
-using NUnit.Framework;
+using Xunit;
 
 namespace DamienG.Tests.Security.Cryptography
 {
-    [TestFixture]
     public class Elf32Tests : BaseHashAlgorithmTests
     {
-        [Test]
+        [Fact]
         public void StaticDefaultSeedAndPolynomialWithShortAsciiString()
         {
             var actual = Elf32.Compute(SimpleBytesAscii);
             
-            Assert.AreEqual(0x0280c5de, actual);
+            Assert.Equal((UInt32)0x0280c5de, actual);
         }
 
-        [Test]
+        [Fact]
         public void StaticDefaultSeedAndPolynomialWithShortAsciiString2()
         {
             var actual = Elf32.Compute(SimpleBytes2Ascii);
 
-            Assert.AreEqual(0x0106193e, actual);
+            Assert.Equal((UInt32)0x0106193e, actual);
         }
 
-        [Test]
+        [Fact]
         public void InstanceDefaultSeedAndPolynomialWith12KBinaryFile()
         {
             var hash = GetTestFileHash(Binary12KFileName, new Elf32());
             
-            Assert.AreEqual(0x0a8bf8f2, GetBigEndianUInt32(hash));
+            Assert.Equal((UInt32)0x0a8bf8f2, GetBigEndianUInt32(hash));
         }
     }
 }

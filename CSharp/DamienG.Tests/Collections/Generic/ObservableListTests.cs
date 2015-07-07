@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DamienG.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 
 namespace DamienG.Tests.Collections.Generic
 {
-    [TestFixture]
     public class ObservableListTests
     {
-        [Test]
+        [Fact]
         public void AddFiresListChangedEvent()
         {
             const string expectedItem = "a string to add";
@@ -24,19 +23,19 @@ namespace DamienG.Tests.Collections.Generic
                                               };
             observableList.Add(expectedItem);
 
-            Assert.AreEqual(expectedItem, actualItem);
-            Assert.AreEqual(0, actualIndex);
-            CollectionAssert.AreEqual(new[] { expectedItem }, observableList.ToArray());
+            Assert.Equal(expectedItem, actualItem);
+            Assert.Equal(0, actualIndex);
+            Assert.Single(observableList.ToArray(), expectedItem);
         }
 
-        [Test]
+        [Fact]
         public void AddWithNoEventListenerAddsItem()
         {
             var observableList = new ObservableList<Decimal> { 1m };
-            CollectionAssert.AreEqual(new[] { 1m }, observableList.ToArray());
+            Assert.Equal(new[] { 1m }, observableList.ToArray());
         }
 
-        [Test]
+        [Fact]
         public void ClearFiresListClearedEvent()
         {
             var didFire = false;
@@ -45,46 +44,46 @@ namespace DamienG.Tests.Collections.Generic
             observableList.ListCleared += (s, e) => { didFire = true; };
             observableList.Clear();
 
-            Assert.IsTrue(didFire);
+            Assert.True(didFire);
         }
 
-        [Test]
+        [Fact]
         public void ClearWithNoEventListenerClearsList()
         {
             var observableList = new ObservableList<DateTime> { DateTime.Now, new DateTime(2001, 5, 4) };
             observableList.Clear();
-            CollectionAssert.IsEmpty(observableList.ToArray());
+            Assert.Empty(observableList.ToArray());
         }
 
-        [Test]
+        [Fact]
         public void ConstructorGivenAListReferencesIt()
         {
             var list = new List<long> { 1, 2, 3 };
             var observableList = new ObservableList<long>(list) { 4 };
 
-            Assert.AreEqual(4, observableList.Count);
-            Assert.AreEqual(4, list.Count);
+            Assert.Equal(4, observableList.Count);
+            Assert.Equal(4, list.Count);
         }
 
-        [Test]
+        [Fact]
         public void ConstructorGivenAnEnumerableCopiesIt()
         {
             var list = new List<int> { 1, 2, 3 };
             var observableList = new ObservableList<int>(list.AsEnumerable()) { 4 };
             list.Remove(1);
 
-            Assert.AreEqual(4, observableList.Count);
-            Assert.AreEqual(2, list.Count);
+            Assert.Equal(4, observableList.Count);
+            Assert.Equal(2, list.Count);
         }
 
-        [Test]
+        [Fact]
         public void ConstructorGivenNothingCreatesAList()
         {
             var observableList = new ObservableList<byte>();
-            Assert.AreEqual(0, observableList.Count);
+            Assert.Equal(0, observableList.Count);
         }
 
-        [Test]
+        [Fact]
         public void IndexOfGivenContainedValueReturnsCorrectIndex()
         {
             const string containedValue = "Charlie";
@@ -92,28 +91,28 @@ namespace DamienG.Tests.Collections.Generic
 
             var observableList = new ObservableList<string>(new[] { "Alpha", "Bravo", containedValue, "Delta", "Echo" }.AsEnumerable());
 
-            Assert.AreEqual(expectedIndex, observableList.IndexOf(containedValue));
+            Assert.Equal(expectedIndex, observableList.IndexOf(containedValue));
         }
 
-        [Test]
+        [Fact]
         public void IndexOfGivenUncontainedValueReturnsMinusOne()
         {
             const string uncontainedValue = "Charly";
 
             var observableList = new ObservableList<string>(new[] { "Alpha", "Bravo", "Charlie", "Delta", "Echo" }.AsEnumerable());
-            Assert.AreEqual(-1, observableList.IndexOf(uncontainedValue));
+            Assert.Equal(-1, observableList.IndexOf(uncontainedValue));
         }
 
-        [Test]
+        [Fact]
         public void IndexOfReturnsCorrectIndex()
         {
             var list = new List<short> { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024 };
             var observableList = new ObservableList<short>(list);
             foreach (var value in list)
-                Assert.AreEqual(list.IndexOf(value), observableList.IndexOf(value));
+                Assert.Equal(list.IndexOf(value), observableList.IndexOf(value));
         }
 
-        [Test]
+        [Fact]
         public void IndexerSetToDiferentObjectDoesFireListChangedEvent()
         {
             var didFire = false;
@@ -122,10 +121,10 @@ namespace DamienG.Tests.Collections.Generic
             observableList.ListChanged += (s, e) => { didFire = true; };
             observableList[2] = "Cedilla";
 
-            Assert.IsTrue(didFire);
+            Assert.True(didFire);
         }
 
-        [Test]
+        [Fact]
         public void IndexerSetToSameObjectDoesNotFireListChangedEvent()
         {
             var didFire = false;
@@ -134,10 +133,10 @@ namespace DamienG.Tests.Collections.Generic
             observableList.ListChanged += (s, e) => { didFire = true; };
             observableList[2] = "Charlie";
 
-            Assert.IsFalse(didFire);
+            Assert.False(didFire);
         }
 
-        [Test]
+        [Fact]
         public void InsertFiresListChangedEvent()
         {
             const int expectedItem = 68030;
@@ -152,11 +151,11 @@ namespace DamienG.Tests.Collections.Generic
                                               };
             observableList.Insert(3, expectedItem);
 
-            Assert.AreEqual(expectedItem, actualItem);
-            Assert.AreEqual(3, actualIndex);
+            Assert.Equal(expectedItem, actualItem);
+            Assert.Equal(3, actualIndex);
         }
 
-        [Test]
+        [Fact]
         public void RemoveAtFiresListChangedEvent()
         {
             const string expectItem = "another string to remove";
@@ -173,11 +172,11 @@ namespace DamienG.Tests.Collections.Generic
                                               };
             observableList.RemoveAt(expectIndex);
 
-            Assert.AreEqual(expectItem, actualItem);
-            Assert.AreEqual(expectIndex, actualIndex);
+            Assert.Equal(expectItem, actualItem);
+            Assert.Equal(expectIndex, actualIndex);
         }
 
-        [Test]
+        [Fact]
         public void RemoveFiresListChangedEvent()
         {
             const string expectItem = "a string to remove";
@@ -194,8 +193,8 @@ namespace DamienG.Tests.Collections.Generic
                                               };
             observableList.Remove(expectItem);
 
-            Assert.AreEqual(expectItem, actualItem);
-            Assert.AreEqual(expectIndex, actualIndex);
+            Assert.Equal(expectItem, actualItem);
+            Assert.Equal(expectIndex, actualIndex);
         }
     }
 }

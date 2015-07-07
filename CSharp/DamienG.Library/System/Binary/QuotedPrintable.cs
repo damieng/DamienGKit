@@ -52,7 +52,7 @@ namespace DamienG.System.Binary
                 column += nextOutput.Length;
             }
 
-            if (nextOutput.Length == 1 && (int)nextOutput[0] <= 32)
+            if (nextOutput.Length == 1 && nextOutput[0] <= 32)
                 sb.Append("=");
 
             return sb.ToString();
@@ -91,7 +91,7 @@ namespace DamienG.System.Binary
         {
             if (b == ' ')
                 return encodeSpaces;
-            if (b == (byte)'\t')
+            if (b == '\t')
                 return encodeTabs;
 
             return (b < 33 || b > 126 || b == '=');
@@ -100,13 +100,13 @@ namespace DamienG.System.Binary
         private int Hex(char a)
         {
             if (a >= '0' && a <= '9')
-                return (int)a - (int)'0';
+                return a - '0';
 
             if (a >= 'a' && a <= 'f')
-                return (int)a - (int)'a' + 10;
+                return a - 'a' + 10;
 
             if (a >= 'A' && a <= 'F')
-                return (int)a - (int)'A' + 10;
+                return a - 'A' + 10;
 
             throw new ArgumentOutOfRangeException("text", String.Format("Character {0} is not hexadecimal", a));
         }

@@ -1,33 +1,33 @@
+using System;
 using DamienG.Security.Cryptography;
-using NUnit.Framework;
+using Xunit;
 
 namespace DamienG.Tests.Security.Cryptography
 {
-    [TestFixture]
     public class Crc32Tests : BaseHashAlgorithmTests
     {
-        [Test]
+        [Fact]
         public void StaticDefaultSeedAndPolynomialWithShortAsciiString()
         {
             var actual = Crc32.Compute(SimpleBytesAscii);
 
-            Assert.AreEqual(0x519025e9, actual);
+            Assert.Equal((UInt32)0x519025e9, actual);
         }
 
-        [Test]
+        [Fact]
         public void StaticDefaultSeedAndPolynomialWithShortAsciiString2()
         {
             var actual = Crc32.Compute(SimpleBytes2Ascii);
 
-            Assert.AreEqual(0x6ee3ad88, actual);
+            Assert.Equal((UInt32)0x6ee3ad88, actual);
         }
 
-        [Test]
+        [Fact]
         public void InstanceDefaultSeedAndPolynomialWith12KBinaryFile()
         {
             var hash = GetTestFileHash(Binary12KFileName, new Crc32());
 
-            Assert.AreEqual(0x9865b070, GetBigEndianUInt32(hash));
+            Assert.Equal(0x9865b070, GetBigEndianUInt32(hash));
         }
     }
 }

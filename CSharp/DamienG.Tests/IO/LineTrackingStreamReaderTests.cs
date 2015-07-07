@@ -1,11 +1,10 @@
 using System.IO;
 using System.Text;
 using DamienG.IO;
-using NUnit.Framework;
+using Xunit;
 
 namespace DamienG.Tests.IO
 {
-    [TestFixture]
     public class LineTrackingStreamReaderTests
     {
         private static Stream MakeMemoryStream(string contents)
@@ -18,17 +17,17 @@ namespace DamienG.Tests.IO
             return memoryStream;
         }
 
-        [Test]
+        [Fact]
         public void InitializedLineAndPositionAreZero()
         {
             var stream = MakeMemoryStream("abcdefghijklmnopqrstuvwxyz");
             var tracking = new LineTrackingStreamReader(stream);
 
-            Assert.AreEqual(0, tracking.LineNumber);
-            Assert.AreEqual(0, tracking.CharacterPosition);
+            Assert.Equal(0, tracking.LineNumber);
+            Assert.Equal(0, tracking.CharacterPosition);
         }
 
-        [Test]
+        [Fact]
         public void ReadLineSetsInitialLineAndPosition()
         {
             const string expectedString = "12345";
@@ -37,20 +36,20 @@ namespace DamienG.Tests.IO
 
             var actualString = tracking.ReadLine();
 
-            Assert.AreEqual(1, tracking.LineNumber);
-            Assert.AreEqual(5, tracking.CharacterPosition);
-            Assert.AreEqual(expectedString, actualString);
+            Assert.Equal(1, tracking.LineNumber);
+            Assert.Equal(5, tracking.CharacterPosition);
+            Assert.Equal(expectedString, actualString);
         }
 
-        [Test]
+        [Fact]
         public void ReadSetsInitialLineAndPosition()
         {
             var stream = MakeMemoryStream("1");
             var tracking = new LineTrackingStreamReader(stream);
             tracking.Read();
 
-            Assert.AreEqual(1, tracking.LineNumber);
-            Assert.AreEqual(1, tracking.CharacterPosition);
+            Assert.Equal(1, tracking.LineNumber);
+            Assert.Equal(1, tracking.CharacterPosition);
         }
     }
 }

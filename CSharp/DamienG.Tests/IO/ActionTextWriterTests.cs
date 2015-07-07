@@ -1,15 +1,14 @@
 using System;
 using DamienG.IO;
-using NUnit.Framework;
+using Xunit;
 
 namespace DamienG.Tests.IO
 {
-    [TestFixture]
     public class ActionTextWriterTests
     {
         private const string SampleString = "Some bytes wander by mistake";
 
-        [Test]
+        [Fact]
         public void WriteCharArrayGivenBufferAndEndRangePerformsActionWithPartialValue()
         {
             var startOffset = SampleString.Length/2;
@@ -18,19 +17,19 @@ namespace DamienG.Tests.IO
             var actual = string.Empty;
             new ActionTextWriter(value => actual = value).Write(SampleString.ToCharArray(), startOffset, expected.Length);
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void WriteCharArrayGivenBufferAndFullRangePerformsActionWithFullValue()
         {
             var actual = string.Empty;
             new ActionTextWriter(value => actual = value).Write(SampleString.ToCharArray(), 0, SampleString.ToCharArray().Length);
 
-            Assert.AreEqual(SampleString, actual);
+            Assert.Equal(SampleString, actual);
         }
 
-        [Test]
+        [Fact]
         public void WriteCharArrayGivenBufferAndMidRangePerformsActionWithPartialValue()
         {
             var quarterLength = SampleString.Length/4;
@@ -39,10 +38,10 @@ namespace DamienG.Tests.IO
             var actual = string.Empty;
             new ActionTextWriter(value => actual = value).Write(SampleString.ToCharArray(), quarterLength, quarterLength);
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void WriteCharArrayGivenBufferAndStartRangePerformsActionWithPartialValue()
         {
             var partialLength = SampleString.Length/2;
@@ -51,76 +50,72 @@ namespace DamienG.Tests.IO
             var actual = string.Empty;
             new ActionTextWriter(value => actual = value).Write(SampleString.ToCharArray(), 0, partialLength);
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
-        [ExpectedException(typeof (ArgumentOutOfRangeException))]
+        [Fact]
         public void WriteCharArrayGivenLengthBeyondBoundaryThrowsArgumentOutOfRangeException()
         {
-            new ActionTextWriter(k => k += k).Write(SampleString.ToCharArray(), 0, 500);
+            Assert.Throws<ArgumentOutOfRangeException>(() => new ActionTextWriter(k => k += k).Write(SampleString.ToCharArray(), 0, 500));
         }
 
-        [Test]
-        [ExpectedException(typeof (ArgumentOutOfRangeException))]
+        [Fact]
         public void WriteCharArrayGivenNegativeIndexThrowsArgumentOutOfRangeException()
         {
-            new ActionTextWriter(k => k += k).Write(SampleString.ToCharArray(), -1, 5);
+            Assert.Throws<ArgumentOutOfRangeException>(() => new ActionTextWriter(k => k += k).Write(SampleString.ToCharArray(), -1, 5));
         }
 
-        [Test]
-        [ExpectedException(typeof (ArgumentOutOfRangeException))]
+        [Fact]
         public void WriteCharArrayGivenNegativeLengthThrowsArgumentOutOfRangeException()
         {
-            new ActionTextWriter(k => k += k).Write(SampleString.ToCharArray(), 0, -5);
+            Assert.Throws<ArgumentOutOfRangeException>(() => new ActionTextWriter(k => k += k).Write(SampleString.ToCharArray(), 0, -5));
         }
 
-        [Test]
-        [ExpectedException(typeof (ArgumentNullException))]
+        [Fact]
         public void WriteCharArrayGivenNullArrayThrowsArgumentNullException()
         {
-            new ActionTextWriter(k => k += k).Write(null, 0, 0);
+            Assert.Throws<ArgumentNullException>(() => new ActionTextWriter(k => k += k).Write(null, 0, 0));
         }
 
-        [Test]
+        [Fact]
         public void WriteLineGivenNullStringPerformsAction()
         {
             var actual = String.Empty;
             new ActionTextWriter(value => actual = value).WriteLine((string) null);
 
-            Assert.AreEqual(Environment.NewLine, actual);
+            Assert.Equal(Environment.NewLine, actual);
         }
 
-        [Test]
+        [Fact]
         public void WriteLineGivenStringPerformsAction()
         {
             const string original = "A simple line";
             var actual = String.Empty;
             new ActionTextWriter(value => actual += value).WriteLine(original);
 
-            Assert.AreEqual(original + Environment.NewLine, actual);
+            Assert.Equal(original + Environment.NewLine, actual);
         }
 
-        [Test]
+        [Fact]
         public void WriteGivenNullStringPerformsAction()
         {
             var actual = String.Empty;
             new ActionTextWriter(value => actual = value).Write((string) null);
 
-            Assert.IsNull(actual);
+            Assert.Null(actual);
         }
 
-        [Test]
+        [Fact]
         public void WriteGivenStringPerformsAction()
         {
             const string expected = "ABC 123";
             var actual = String.Empty;
             new ActionTextWriter(value => actual = value).Write(expected);
 
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [Test]
+        [Fact]
         public void WriteGivenStringPerformsActionManyTimes()
         {
             string[] originals = { "First", "Second", "Third" };
@@ -130,7 +125,7 @@ namespace DamienG.Tests.IO
             foreach (var original in originals)
                 actionTextWriter.WriteLine(original);
 
-            Assert.AreEqual(expected + Environment.NewLine, actual);
+            Assert.Equal(expected + Environment.NewLine, actual);
         }
     }
 }
