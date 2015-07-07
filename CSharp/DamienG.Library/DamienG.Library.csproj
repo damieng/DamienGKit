@@ -93,6 +93,7 @@
     <Compile Include="Security\Cryptography\Elf32.cs" />
     <Compile Include="System\AutoOperators.cs" />
     <Compile Include="System\DateExtensions.cs" />
+    <Compile Include="System\LinqAsync.cs" />
     <Compile Include="System\LinqExtensions.cs" />
     <Compile Include="System\EnumT.cs" />
     <Compile Include="IO\DebugTextWriter.cs" />
