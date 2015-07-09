@@ -13,7 +13,7 @@ namespace DamienG.System
     /// </summary>
     public static class LinqExtensions
     {
-        private static readonly Random random = new Random();
+        static readonly Random Random = new Random();
 
         public static IEnumerable<T> OrderBySequence<T, TProperty>(this IEnumerable<T> source, Func<T, TProperty> property, IEnumerable<TProperty> sequence)
         {
@@ -37,7 +37,7 @@ namespace DamienG.System
 
         public static T RandomElement<T>(this ICollection<T> collection)
         {
-            return collection.ElementAt(random.Next(collection.Count));
+            return collection.ElementAt(Random.Next(collection.Count));
         }
 
         public static TResult FirstOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, bool> predicate, Func<TSource, TResult> selector)

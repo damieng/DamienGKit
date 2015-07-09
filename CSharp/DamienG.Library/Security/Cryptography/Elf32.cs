@@ -14,7 +14,7 @@ namespace DamienG.Security.Cryptography
     /// </summary>
     public sealed class Elf32 : HashAlgorithm
     {
-        private UInt32 hash;
+        UInt32 hash;
 
         public Elf32()
         {
@@ -26,9 +26,9 @@ namespace DamienG.Security.Cryptography
             hash = 0;
         }
 
-        protected override void HashCore(byte[] buffer, int start, int length)
+        protected override void HashCore(byte[] array, int ibStart, int cbSize)
         {
-            hash = CalculateHash(hash, buffer, start, length);
+            hash = CalculateHash(hash, array, ibStart, cbSize);
         }
 
         protected override byte[] HashFinal()
@@ -50,11 +50,12 @@ namespace DamienG.Security.Cryptography
             return CalculateHash(seed, buffer, 0, buffer.Length);
         }
 
-        private static UInt32 CalculateHash(UInt32 seed, IList<byte> buffer, int start, int size)
+        static UInt32 CalculateHash(UInt32 seed, IList<byte> buffer, int start, int size)
         {
             var hash = seed;
-            
-            for (var i = start; i < size-start; i++) {
+
+            for (var i = start; i < size - start; i++)
+            {
                 hash = (hash << 4) + buffer[i];
                 var work = hash & 0xf0000000u;
                 hash ^= work >> 24;
@@ -63,13 +64,13 @@ namespace DamienG.Security.Cryptography
             return hash;
         }
 
-        private static byte[] UInt32ToBigEndianBytes(UInt32 uint32)
+        static byte[] UInt32ToBigEndianBytes(UInt32 uint32)
         {
             var result = BitConverter.GetBytes(uint32);
-            
+
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(result);
-            
+
             return result;
         }
     }

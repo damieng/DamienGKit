@@ -16,13 +16,16 @@ namespace DamienG.Web.Mvc
     /// </summary>
     public class FeedResult : ActionResult
     {
-        private readonly SyndicationFeedFormatter feed;
+        readonly SyndicationFeedFormatter feed;
 
         public Encoding ContentEncoding { get; set; }
         public string ContentType { get; set; }
 
         public FeedResult(SyndicationFeedFormatter feed)
         {
+            if (feed == null)
+                throw new ArgumentNullException("feed");
+
             this.feed = feed;
         }
 

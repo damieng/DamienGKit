@@ -1,4 +1,4 @@
-﻿﻿// Copyright (c) Damien Guard.  All rights reserved.
+﻿// Copyright (c) Damien Guard.  All rights reserved.
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. 
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 // Originally published at http://damieng.com/blog/2006/06/14/observing_change_events_on_a_listt
@@ -15,7 +15,7 @@ namespace DamienG.Collections.Generic
     /// <typeparam name="T">Type of items in the list.</typeparam>
     public class ObservableList<T> : IList<T>
     {
-        private readonly IList<T> internalList;
+        readonly IList<T> internalList;
 
         public ObservableList()
         {
@@ -24,11 +24,17 @@ namespace DamienG.Collections.Generic
 
         public ObservableList(IList<T> list)
         {
+            if (list == null)
+                throw new ArgumentNullException("list");
+
             internalList = list;
         }
 
         public ObservableList(IEnumerable<T> collection)
         {
+            if (collection == null)
+                throw new ArgumentNullException("collection");
+
             internalList = new List<T>(collection);
         }
 
@@ -46,7 +52,7 @@ namespace DamienG.Collections.Generic
         public void RemoveAt(int index)
         {
             var item = internalList[index];
-            internalList.Remove(item);
+            internalList.RemoveAt(index);
             OnListChanged(new ListChangedEventArgs(index, item));
         }
 
@@ -118,28 +124,26 @@ namespace DamienG.Collections.Generic
             return ((IEnumerable)internalList).GetEnumerator();
         }
 
-        public event EventHandler<ListChangedEventArgs> ListChanged;
-        public event EventHandler ListCleared;
+        public event EventHandler<ListChangedEventArgs> ListChanged = delegate { };
+        public event EventHandler ListCleared = delegate { };
 
         protected virtual void OnListChanged(ListChangedEventArgs e)
         {
-            if (ListChanged != null)
-                ListChanged(this, e);
+            ListChanged(this, e);
         }
 
         protected virtual void OnListCleared(EventArgs e)
         {
-            if (ListCleared != null)
-                ListCleared(this, e);
+            ListCleared(this, e);
         }
 
         public class ListChangedEventArgs : EventArgs
         {
-            private readonly int index;
-            private readonly T item;
+            readonly int index;
+            readonly T item;
 
-            public ListChangedEventArgs(int index, T item)
-            {
+            internal ListChangedEventArgs(int index, T item)
+            {                
                 this.index = index;
                 this.item = item;
             }

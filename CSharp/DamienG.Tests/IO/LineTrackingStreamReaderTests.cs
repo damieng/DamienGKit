@@ -7,7 +7,7 @@ namespace DamienG.Tests.IO
 {
     public class LineTrackingStreamReaderTests
     {
-        private static Stream MakeMemoryStream(string contents)
+        static Stream MakeMemoryStream(string contents)
         {
             var memoryStream = new MemoryStream(contents.Length);
             var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8);

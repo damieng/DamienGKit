@@ -14,8 +14,8 @@ namespace DamienG.System
     /// <typeparam name="T"></typeparam>
     public sealed class EquatableWeakReference<T> : IEquatable<EquatableWeakReference<T>>, IDisposable where T : class
     {
-        private readonly int hashCode;
-        private GCHandle handle;
+        readonly int hashCode;
+        GCHandle handle;
 
         public EquatableWeakReference(T target)
         {
@@ -51,10 +51,10 @@ namespace DamienG.System
             Dispose();
         }
 
-        public override bool Equals(object other)
+        public override bool Equals(object obj)
         {
-            if (other is EquatableWeakReference<T>)
-                return Equals((EquatableWeakReference<T>) other);
+            if (obj is EquatableWeakReference<T>)
+                return Equals((EquatableWeakReference<T>) obj);
 
             return false;
         }

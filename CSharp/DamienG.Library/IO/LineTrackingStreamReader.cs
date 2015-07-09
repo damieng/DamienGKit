@@ -72,7 +72,7 @@ namespace DamienG.IO
             return read;
         }
 
-        private void TrackPosition(IList<char> buffer, int index, int count)
+        void TrackPosition(IList<char> buffer, int index, int count)
         {
             for (var i = index; i < count; i++)
                 if (buffer[i] == '\n')

@@ -17,9 +17,9 @@ namespace DamienG.System.Binary
 
     public class QuotedPrintable : BinaryTextEncoding
     {
-        private readonly bool encodeSpaces = true;
-        private readonly bool encodeTabs = true;
-        private const int maxLineLength = 76;
+        readonly bool encodeSpaces = true;
+        readonly bool encodeTabs = true;
+        const int maxLineLength = 76;
 
         public QuotedPrintable()
         {
@@ -62,25 +62,25 @@ namespace DamienG.System.Binary
             return sb.ToString();
         }
 
-        public override byte[] Decode(string text)
+        public override byte[] Decode(string input)
         {
             var output = new List<Byte>();
-            for (var textIndex = 0; textIndex < text.Length; textIndex++)
+            for (var textIndex = 0; textIndex < input.Length; textIndex++)
             {
-                var t = text[textIndex];
+                var t = input[textIndex];
                 if (t == '=')
                 {
                     textIndex++;
-                    switch (text.Length - textIndex)
+                    switch (input.Length - textIndex)
                     {
                         case 1:
-                            throw new ArgumentOutOfRangeException("text", "Only one character found after = sign - is data truncated?");
+                            throw new ArgumentOutOfRangeException("input", "Only one character found after = sign - is data truncated?");
 
                         case 0:
                             break;
 
                         default:
-                            output.Add((byte)((Hex(text[textIndex++]) << 4) + Hex(text[textIndex])));
+                            output.Add((byte)((Hex(input[textIndex++]) << 4) + Hex(input[textIndex])));
                             break;
                     }
                 }
@@ -91,7 +91,7 @@ namespace DamienG.System.Binary
             return output.ToArray();
         }
 
-        private bool ShouldEncode(byte b)
+        bool ShouldEncode(byte b)
         {
             if (b == ' ')
                 return encodeSpaces;
@@ -101,7 +101,7 @@ namespace DamienG.System.Binary
             return (b < 33 || b > 126 || b == '=');
         }
 
-        private int Hex(char a)
+        int Hex(char a)
         {
             if (a >= '0' && a <= '9')
                 return a - '0';
@@ -112,7 +112,7 @@ namespace DamienG.System.Binary
             if (a >= 'A' && a <= 'F')
                 return a - 'A' + 10;
 
-            throw new ArgumentOutOfRangeException("text", String.Format("Character {0} is not hexadecimal", a));
+            throw new ArgumentOutOfRangeException("a", String.Format("Character {0} is not hexadecimal", a));
         }
     }
 }

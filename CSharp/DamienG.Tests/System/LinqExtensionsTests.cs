@@ -8,13 +8,13 @@ namespace DamienG.Tests.System
 {
     public class LinqExtensionsTests
     {
-        private class Simple
+        class Simple
         {
             public int Id;
             public string Name;
         }
 
-        private readonly List<Simple> unsorted = new List<Simple> {
+        readonly List<Simple> unsorted = new List<Simple> {
             new Simple { Id = 234, Name = "And" },
             new Simple { Id = 100, Name = "Seven" },
             new Simple { Id = 910, Name = "Score" },

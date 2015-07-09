@@ -8,7 +8,7 @@ namespace DamienG.Tests.System
 {
     public class EnumTTests
     {
-        private enum NumberedEnum
+        enum NumberedEnum
         {
             One = 1,
             Two = 2,
@@ -18,7 +18,7 @@ namespace DamienG.Tests.System
         };
 
         [Flags]
-        private enum FlagEnum
+        enum FlagEnum
         {
             BitOne = 1,
             BitTwo = 2,
@@ -29,12 +29,12 @@ namespace DamienG.Tests.System
             BitsTwoAndFour = 10
         };
 
-        private const string ValidName = "Nine";
-        private const int ValidInteger = 9;
-        private const NumberedEnum ValidEnum = NumberedEnum.Nine;
+        const string ValidName = "Nine";
+        const int ValidInteger = 9;
+        const NumberedEnum ValidEnum = NumberedEnum.Nine;
 
-        private const string InvalidName = "Ninety";
-        private const int InvalidInteger = 800;
+        const string InvalidName = "Ninety";
+        const int InvalidInteger = 800;
 
         [Fact]
         public void CastOrNullCastsWhenValidInteger()

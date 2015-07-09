@@ -14,7 +14,7 @@ namespace DamienG.IO
     /// </summary>
     public class MulticastTextWriter : TextWriter
     {
-        private readonly IList<TextWriter> textWriters;
+        readonly IList<TextWriter> textWriters;
 
         public MulticastTextWriter()
             : this(new List<TextWriter>())

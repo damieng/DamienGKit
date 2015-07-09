@@ -202,7 +202,7 @@ namespace DamienG.Tests.System
 
     public class InheritedTestClass<T> : AutoOperators where T : IComparable
     {
-        private readonly T primitive;
+        readonly T primitive;
 
         public InheritedTestClass(T primitive)
         {

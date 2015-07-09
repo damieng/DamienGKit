@@ -15,11 +15,11 @@ namespace DamienG.System
     /// <typeparam name="T">Type of Enum</typeparam>
     public static class Enum<T> where T : struct
     {
-        private static readonly IEnumerable<T> all = Enum.GetValues(typeof (T)).Cast<T>();
-        private static readonly Dictionary<string, T> insensitiveNames = all.ToDictionary(k => Enum.GetName(typeof (T), k).ToUpperInvariant());
-        private static readonly Dictionary<string, T> sensitiveNames = all.ToDictionary(k => Enum.GetName(typeof (T), k));
-        private static readonly Dictionary<int, T> values = all.ToDictionary(k => Convert.ToInt32(k));
-        private static readonly Dictionary<T, string> names = all.ToDictionary(k => k, v => v.ToString());
+        static readonly IEnumerable<T> all = Enum.GetValues(typeof (T)).Cast<T>();
+        static readonly Dictionary<string, T> insensitiveNames = all.ToDictionary(k => Enum.GetName(typeof (T), k).ToUpperInvariant());
+        static readonly Dictionary<string, T> sensitiveNames = all.ToDictionary(k => Enum.GetName(typeof (T), k));
+        static readonly Dictionary<int, T> values = all.ToDictionary(k => Convert.ToInt32(k));
+        static readonly Dictionary<T, string> names = all.ToDictionary(k => k, v => v.ToString());
 
         public static bool IsDefined(T value)
         {
@@ -86,7 +86,7 @@ namespace DamienG.System
 
         public static T? ParseOrNull(string value)
         {
-            if (String.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
                 return null;
 
             T foundValue;
@@ -101,7 +101,7 @@ namespace DamienG.System
             if (!ignoreCase)
                 return ParseOrNull(value);
 
-            if (String.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
                 return null;
 
             T foundValue;

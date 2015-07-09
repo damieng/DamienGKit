@@ -21,7 +21,7 @@ namespace DamienG.Tests.Security.Cryptography
                 return hashAlgorithm.ComputeHash(stream);
         }
 
-        private string CombinePaths(string baseFolder, params string[] folders)
+        string CombinePaths(string baseFolder, params string[] folders)
         {
             var result = baseFolder;
             foreach (var folder in folders)

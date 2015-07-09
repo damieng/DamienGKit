@@ -14,7 +14,7 @@ namespace DamienG.IO
     /// </summary>
     public class ActionTextWriter : TextWriter
     {
-        private readonly Action<string> action;
+        readonly Action<string> action;
 
         public ActionTextWriter(Action<string> action)
         {

@@ -19,10 +19,10 @@ namespace DamienG.Security.Cryptography
     {
         public const UInt64 DefaultSeed = 0x0;
 
-        private readonly UInt64[] table;
+        readonly UInt64[] table;
 
-        private readonly UInt64 seed;
-        private UInt64 hash;
+        readonly UInt64 seed;
+        UInt64 hash;
 
         public Crc64(UInt64 polynomial)
             :  this(polynomial, DefaultSeed)
@@ -40,9 +40,9 @@ namespace DamienG.Security.Cryptography
             hash = seed;
         }
 
-        protected override void HashCore(byte[] buffer, int start, int length)
+        protected override void HashCore(byte[] array, int ibStart, int cbSize)
         {
-            hash = CalculateHash(hash, table, buffer, start, length);
+            hash = CalculateHash(hash, table, array, ibStart, cbSize);
         }
 
         protected override byte[] HashFinal()
@@ -67,7 +67,7 @@ namespace DamienG.Security.Cryptography
             return crc;
         }
 
-        private static byte[] UInt64ToBigEndianBytes(UInt64 value)
+        static byte[] UInt64ToBigEndianBytes(UInt64 value)
         {
             var result = BitConverter.GetBytes(value);
 
@@ -77,7 +77,7 @@ namespace DamienG.Security.Cryptography
             return result;
         }
 
-        private static UInt64[] InitializeTable(UInt64 polynomial)
+        static UInt64[] InitializeTable(UInt64 polynomial)
         {
             if (polynomial == Crc64Iso.Iso3309Polynomial && Crc64Iso.Table != null)
                 return Crc64Iso.Table;

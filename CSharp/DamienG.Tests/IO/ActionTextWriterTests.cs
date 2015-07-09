@@ -6,7 +6,7 @@ namespace DamienG.Tests.IO
 {
     public class ActionTextWriterTests
     {
-        private const string SampleString = "Some bytes wander by mistake";
+        const string SampleString = "Some bytes wander by mistake";
 
         [Fact]
         public void WriteCharArrayGivenBufferAndEndRangePerformsActionWithPartialValue()
