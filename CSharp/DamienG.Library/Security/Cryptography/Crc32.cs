@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 
 namespace DamienG.Security.Cryptography
@@ -100,10 +101,10 @@ namespace DamienG.Security.Cryptography
 
         static UInt32 CalculateHash(UInt32[] table, UInt32 seed, IList<byte> buffer, int start, int size)
         {
-            var crc = seed;
-            for (var i = start; i < size - start; i++)
-                crc = (crc >> 8) ^ table[buffer[i] ^ crc & 0xff];
-            return crc;
+            var hash = seed;
+            for (var i = start; i < start + size; i++)
+                hash = (hash >> 8) ^ table[buffer[i] ^ hash & 0xff];
+            return hash;
         }
 
         static byte[] UInt32ToBigEndianBytes(UInt32 uint32)

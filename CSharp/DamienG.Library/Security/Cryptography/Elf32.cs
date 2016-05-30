@@ -53,8 +53,7 @@ namespace DamienG.Security.Cryptography
         static UInt32 CalculateHash(UInt32 seed, IList<byte> buffer, int start, int size)
         {
             var hash = seed;
-
-            for (var i = start; i < size - start; i++)
+            for (var i = start; i < start + size; i++)
             {
                 hash = (hash << 4) + buffer[i];
                 var work = hash & 0xf0000000u;
