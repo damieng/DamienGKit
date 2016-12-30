@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>DamienGKit.T4</id>
+    <version>1.0.1</version>
+    <authors>Damien Guard, Michael W. Powell</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This helper class forms the basis of multiple file output T4 code generation. Capability to generate resources is also provided.</description>
+  </metadata>
+  <files>
+    <file src="MultipleOutputHelper\*.ttinclude" target="t4\MultipleOutputHelper" />
+    <file src="ResourceGenerator\*.tt*" target="t4\ResourceGenerator" />
+  </files>
+</package>
