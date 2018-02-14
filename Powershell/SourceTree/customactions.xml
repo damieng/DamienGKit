@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<ArrayOfCustomAction xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomAction>
+    <Caption>View commit on GitHub</Caption>
+    <OpenInSeparateWindow>false</OpenInSeparateWindow>
+    <ShowFullOutput>false</ShowFullOutput>
+    <IsSilent>true</IsSilent>
+    <Target>powershell.exe</Target>
+    <Parameters>-noprofile -file C:\scripts\view-commit-on-github.ps1 $REPO $SHA</Parameters>
+  </CustomAction>
+  <CustomAction>
+    <Caption>View file on GitHub</Caption>
+    <OpenInSeparateWindow>false</OpenInSeparateWindow>
+    <ShowFullOutput>false</ShowFullOutput>
+    <IsSilent>true</IsSilent>
+    <Target>powershell.exe</Target>
+    <Parameters>-noprofile -file C:\scripts\view-file-on-github.ps1 $FILE</Parameters>
+  </CustomAction>
+  <CustomAction>
+    <Caption>View file commit on GitHub</Caption>
+    <OpenInSeparateWindow>false</OpenInSeparateWindow>
+    <ShowFullOutput>false</ShowFullOutput>
+    <IsSilent>true</IsSilent>
+    <Target>powershell.exe</Target>
+    <Parameters>-noprofile -file C:\scripts\view-file-commit-on-github.ps1 $REPO $SHA $FILE</Parameters>
+  </CustomAction>
+  <CustomAction>
+    <Caption>View repo on GitHub</Caption>
+    <OpenInSeparateWindow>false</OpenInSeparateWindow>
+    <ShowFullOutput>false</ShowFullOutput>
+    <IsSilent>true</IsSilent>
+    <Target>powershell.exe</Target>
+    <Parameters>-noprofile -file C:\scripts\view-repo-on-github.ps1 $REPO</Parameters>
+  </CustomAction>
+</ArrayOfCustomAction>
