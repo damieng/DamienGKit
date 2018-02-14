@@ -12,10 +12,10 @@ in order to provide better integration with GitHub. They are:
 
 ## Installation
 
-Check out the scripts to somewhere convenient, e.g. c:\scripts
+Check out the scripts to somewhere convenient, e.g. `c:\scripts`
 
+### Option 1
 Go into *Tools > Options* in SourceTree for Windows then add new custom actions:
-
 
 Menu caption | Parameters
 -------------|-------------
@@ -30,8 +30,10 @@ Each one should also specify:
 * Show Full Output: unchecked
 * Script to run: powershell.exe
 
-You may need to restart SourceTree for the custom actions to show in the menus.
+### Option 2
+* Copy the sample [customactions.xml](https://github.com/damieng/DamienGKit/blob/master/Powershell/SourceTree/customactions.xml) to `%LOCALAPPDATA%\Atlassian\SourceTree`
+* Update the path to the scripts as necessary
 
-## Limitations
-
-Does not currently work predictably with multiple remote repositories.
+## Notes
+* You may need to restart SourceTree for the custom actions to show in the menus.
+* Does not currently work predictably with multiple remote repositories.
