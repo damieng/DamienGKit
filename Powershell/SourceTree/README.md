@@ -20,7 +20,7 @@ Go into *Tools > Options* in SourceTree for Windows then add new custom actions:
 Menu caption | Parameters
 -------------|-------------
 View commit on GitHub | -noprofile -file c:\scripts\view-commit-on-github.ps1 $REPO $SHA
-View file on GitHub | -noprofile -file c:\scripts\view-file-on-github.ps1 $FILE
+View file on GitHub | -noprofile -file c:\scripts\view-file-on-github.ps1 $REPO $FILE
 View file commit on GitHub | -noprofile -file c:\scripts\view-file-commit-on-github.ps1 $REPO $SHA $FILE
 View repo on GitHub | -noprofile -file c:\scripts\view-repo-on-github.ps1 $REPO
 

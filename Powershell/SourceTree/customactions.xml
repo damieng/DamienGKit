@@ -14,7 +14,7 @@
     <ShowFullOutput>false</ShowFullOutput>
     <IsSilent>true</IsSilent>
     <Target>powershell.exe</Target>
-    <Parameters>-noprofile -file C:\scripts\view-file-on-github.ps1 $FILE</Parameters>
+    <Parameters>-noprofile -file C:\scripts\view-file-on-github.ps1 $REPO $FILE</Parameters>
   </CustomAction>
   <CustomAction>
     <Caption>View file commit on GitHub</Caption>
