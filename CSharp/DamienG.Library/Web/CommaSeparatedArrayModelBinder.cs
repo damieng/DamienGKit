@@ -10,7 +10,7 @@ namespace DamienG.Web
 {
     /// <summary>
     /// Allows for integers to be passed on the URL as comma-seperated values in addition to the usual
-    /// multi-named values (i.e.  param=1,2,3 instead of just param=1&param=2&param=3).
+    /// multi-named values (i.e.  param=1,2,3 instead of just param=1&amp;param=2&amp;param=3).
     /// </summary>
     public class CommaSeparatedArrayModelBinder : IModelBinder
     {
