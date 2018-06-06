@@ -12,8 +12,8 @@ namespace DamienG.Tests.Security.Cryptography
         protected const string SimpleString2 = @"Life moves pretty fast. If you don't stop and look around once in a while, you could miss it.";
         protected readonly byte[] SimpleBytes2Ascii = Encoding.ASCII.GetBytes(SimpleString2);
         protected readonly string RunFolder = AppDomain.CurrentDomain.BaseDirectory;
-        protected readonly string Binary12KFileName = "binary12k.png";
-        protected readonly string Binary100KFileName = "binary100k.db";
+        protected readonly string Binary12KFileName = "binary12K.png";
+        protected readonly string Binary1MFileName = "binary1M.bin";
 
         protected byte[] GetTestFileHash(string name, HashAlgorithm hashAlgorithm)
         {

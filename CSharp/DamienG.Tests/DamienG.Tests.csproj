@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Security\Cryptography\BaseHashAlgorithmTests.cs" />
+    <Compile Include="Security\Cryptography\Crc32Slice8Tests.cs" />
     <Compile Include="Security\Cryptography\Crc64Tests.cs" />
     <Compile Include="Security\Cryptography\Crc32Tests.cs" />
     <Compile Include="Security\Cryptography\Elf32Tests.cs" />
@@ -124,7 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Security\Cryptography\TestFiles\binary100k.db">
+    <Content Include="Security\Cryptography\TestFiles\binary1M.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

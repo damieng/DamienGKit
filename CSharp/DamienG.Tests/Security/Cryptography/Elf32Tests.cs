@@ -31,11 +31,11 @@ namespace DamienG.Tests.Security.Cryptography
         }
 
         [Fact]
-        public void ComputeViaHashAlgorithmWith100KBinaryFile()
+        public void ComputeViaHashAlgorithmWith1MBinaryFile()
         {
-            var hash = GetTestFileHash(Binary100KFileName, new Elf32());
+            var hash = GetTestFileHash(Binary1MFileName, new Elf32());
 
-            Assert.Equal(0x287256cU, GetBigEndianUInt32(hash));
+            Assert.Equal(0x5838755u, GetBigEndianUInt32(hash));
         }
     }
 }

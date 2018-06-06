@@ -42,6 +42,7 @@
     <ConsolePause>false</ConsolePause>
     <CodeAnalysisRuleSet>BasicCorrectnessRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -96,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Security\Cryptography\Crc32Slice8.cs" />
     <Compile Include="Security\Cryptography\Crc32.cs" />
     <Compile Include="Security\Cryptography\Crc64.cs" />
     <Compile Include="Security\Cryptography\Elf32.cs" />

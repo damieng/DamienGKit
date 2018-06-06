@@ -32,11 +32,11 @@ namespace DamienG.Tests.Security.Cryptography
 
 
         [Fact]
-        public void IsoInstanceDefaultSeedAndPolynomialWith100KBinaryFile()
+        public void IsoInstanceDefaultSeedAndPolynomialWith1MBinaryFile()
         {
-            var hash = GetTestFileHash(Binary100KFileName, new Crc64Iso());
+            var hash = GetTestFileHash(Binary1MFileName, new Crc64Iso());
 
-            Assert.Equal(0xe1059f24b8d5f523ul, GetBigEndianUInt64(hash));
+            Assert.Equal(0xcccd937b6f682d4fUL, GetBigEndianUInt64(hash));
         }
     }
 }

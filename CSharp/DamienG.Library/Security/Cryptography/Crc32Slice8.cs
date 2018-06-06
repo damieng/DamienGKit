@@ -4,13 +4,18 @@
 // Originally published at http://damieng.com/blog/2006/08/08/calculating_crc32_in_c_and_net
 
 using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 
 namespace DamienG.Security.Cryptography
 {
     /// <summary>
-    /// Implements a 32-bit CRC hash algorithm compatible with Zip etc.
+    /// Implements a 32-bit CRC hash algorithm compatible with Zip etc. 
+    /// This version uses the Slice-by-8 technique developed by Intel at 
+    /// https://sourceforge.net/projects/slicing-by-8/ and while C#/.NET doesn't 
+    /// inline all of the performance benefits it does seem to perform slighly better.
+    /// It processes 8 bytes at a time using 8 lookup tables so the table size is increased
+    /// from 1KB to 8KB.  Data is read using two UInt32 conversions.  UInt64 did not seem to
+    /// improve the speed.
     /// </summary>
     /// <remarks>
     /// Crc32 should only be used for backward compatibility with older file formats
@@ -19,23 +24,23 @@ namespace DamienG.Security.Cryptography
     /// interface or remember that the result of one Compute call needs to be ~ (XOR) before
     /// being passed in as the seed for the next Compute call.
     /// </remarks>
-    public sealed class Crc32 : HashAlgorithm
+    public sealed class Crc32Slice8 : HashAlgorithm
     {
         public const UInt32 DefaultPolynomial = 0xedb88320u;
         public const UInt32 DefaultSeed = 0xffffffffu;
 
-        static UInt32[] defaultTable;
+        static UInt32[,] defaultTable;
 
         readonly UInt32 seed;
-        readonly UInt32[] table;
+        readonly UInt32[,] table;
         UInt32 hash;
 
-        public Crc32()
+        public Crc32Slice8()
             : this(DefaultPolynomial, DefaultSeed)
         {
         }
 
-        public Crc32(UInt32 polynomial, UInt32 seed)
+        public Crc32Slice8(UInt32 polynomial, UInt32 seed)
         {
             table = InitializeTable(polynomial);
             this.seed = hash = seed;
@@ -59,7 +64,7 @@ namespace DamienG.Security.Cryptography
         }
 
         public override int HashSize { get { return 32; } }
-        
+
         public static UInt32 Compute(byte[] buffer)
         {
             return Compute(DefaultSeed, buffer);
@@ -75,12 +80,14 @@ namespace DamienG.Security.Cryptography
             return ~CalculateHash(InitializeTable(polynomial), seed, buffer, 0, buffer.Length);
         }
 
-        static UInt32[] InitializeTable(UInt32 polynomial)
+        static UInt32[,] InitializeTable(UInt32 polynomial)
         {
             if (polynomial == DefaultPolynomial && defaultTable != null)
                 return defaultTable;
 
-            var createTable = new UInt32[256];
+            var table = new UInt32[8, 256];
+
+            // Compute normal CRC table
             for (var i = 0; i < 256; i++)
             {
                 var entry = (UInt32)i;
@@ -89,20 +96,57 @@ namespace DamienG.Security.Cryptography
                         entry = (entry >> 1) ^ polynomial;
                     else
                         entry = entry >> 1;
-                createTable[i] = entry;
+                table[0, i] = entry;
+            }
+
+            // Slicing by 8 table
+            for (var i = 0; i < 256; i++)
+            {
+                table[1, i] = (table[0, i] >> 8) ^ table[0, table[0, i] & 0xFF];
+                table[2, i] = (table[1, i] >> 8) ^ table[0, table[1, i] & 0xFF];
+                table[3, i] = (table[2, i] >> 8) ^ table[0, table[2, i] & 0xFF];
+                table[4, i] = (table[3, i] >> 8) ^ table[0, table[3, i] & 0xFF];
+                table[5, i] = (table[4, i] >> 8) ^ table[0, table[4, i] & 0xFF];
+                table[6, i] = (table[5, i] >> 8) ^ table[0, table[5, i] & 0xFF];
+                table[7, i] = (table[6, i] >> 8) ^ table[0, table[6, i] & 0xFF];
             }
 
             if (polynomial == DefaultPolynomial)
-                defaultTable = createTable;
+                defaultTable = table;
 
-            return createTable;
+            return table;
         }
 
-        static UInt32 CalculateHash(UInt32[] table, UInt32 seed, IList<byte> buffer, int start, int size)
+        static UInt32 CalculateHash(UInt32[,] table, UInt32 seed, byte[] buffer, int start, int size)
         {
             var hash = seed;
-            for (var i = start; i < start + size; i++)
-                hash = (hash >> 8) ^ table[buffer[i] ^ hash & 0xff];
+
+            var length = size - start;
+            var i = start;
+
+            unchecked
+            {
+                while (length >= 8)
+                {
+                    var one = BitConverter.ToInt32(buffer, i) ^ hash;
+                    var two = BitConverter.ToInt32(buffer, i + 4);
+                    hash =
+                        table[0, (two >> 24) & 0xFF] ^
+                        table[1, (two >> 16) & 0xFF] ^
+                        table[2, (two >> 8) & 0xFF] ^
+                        table[3, (two) & 0xFF] ^
+                        table[4, (one >> 24) & 0xFF] ^
+                        table[5, (one >> 16) & 0xFF] ^
+                        table[6, (one >> 8) & 0xFF] ^
+                        table[7, one & 0xFF];
+                    length -= 8;
+                    i += 8;
+                }
+
+                while (length-- != 0)
+                    hash = (hash >> 8) ^ table[0, buffer[i++] ^ hash & 0xff];
+            }
+
             return hash;
         }
 
