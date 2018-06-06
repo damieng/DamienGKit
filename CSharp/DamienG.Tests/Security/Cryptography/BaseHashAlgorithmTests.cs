@@ -13,6 +13,7 @@ namespace DamienG.Tests.Security.Cryptography
         protected readonly byte[] SimpleBytes2Ascii = Encoding.ASCII.GetBytes(SimpleString2);
         protected readonly string RunFolder = AppDomain.CurrentDomain.BaseDirectory;
         protected readonly string Binary12KFileName = "binary12k.png";
+        protected readonly string Binary100KFileName = "binary100k.db";
 
         protected byte[] GetTestFileHash(string name, HashAlgorithm hashAlgorithm)
         {

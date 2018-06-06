@@ -11,7 +11,7 @@ namespace DamienG.Tests.Security.Cryptography
         {
             var actual = Crc64Iso.Compute(SimpleBytesAscii);
 
-            Assert.Equal((UInt64)0x7E210EB1B03E5A1D, actual);
+            Assert.Equal(0x7e210eb1b03e5a1dUL, actual);
         }
 
         [Fact]
@@ -19,7 +19,7 @@ namespace DamienG.Tests.Security.Cryptography
         {
             var actual = Crc64Iso.Compute(SimpleBytes2Ascii);
 
-            Assert.Equal((UInt64)0x416B4150508661EE, actual);
+            Assert.Equal(0x416b4150508661eeUL, actual);
         }
 
         [Fact]
@@ -27,7 +27,16 @@ namespace DamienG.Tests.Security.Cryptography
         {
             var hash = GetTestFileHash(Binary12KFileName, new Crc64Iso());
 
-            Assert.Equal(0x9614CF8EA0EF8E63, GetBigEndianUInt64(hash));
+            Assert.Equal(0x9614cf8ea0ef8E63UL, GetBigEndianUInt64(hash));
+        }
+
+
+        [Fact]
+        public void IsoInstanceDefaultSeedAndPolynomialWith100KBinaryFile()
+        {
+            var hash = GetTestFileHash(Binary100KFileName, new Crc64Iso());
+
+            Assert.Equal(0xe1059f24b8d5f523ul, GetBigEndianUInt64(hash));
         }
     }
 }

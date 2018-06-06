@@ -11,7 +11,7 @@ namespace DamienG.Tests.Security.Cryptography
         {
             var actual = Crc32.Compute(SimpleBytesAscii);
 
-            Assert.Equal((UInt32)0x519025e9, actual);
+            Assert.Equal(0x519025e9u, actual);
         }
 
         [Fact]
@@ -19,7 +19,7 @@ namespace DamienG.Tests.Security.Cryptography
         {
             var actual = Crc32.Compute(SimpleBytes2Ascii);
 
-            Assert.Equal((UInt32)0x6ee3ad88, actual);
+            Assert.Equal(0x6ee3ad88u, actual);
         }
 
         [Fact]
@@ -27,7 +27,15 @@ namespace DamienG.Tests.Security.Cryptography
         {
             var hash = GetTestFileHash(Binary12KFileName, new Crc32());
 
-            Assert.Equal(0x9865b070, GetBigEndianUInt32(hash));
+            Assert.Equal(0x9865b070u, GetBigEndianUInt32(hash));
+        }
+
+        [Fact]
+        public void InstanceDefaultSeedAndPolynomialWith100KBinaryFile()
+        {
+            var hash = GetTestFileHash(Binary100KFileName, new Crc32());
+
+            Assert.Equal(0xa1a09767u, GetBigEndianUInt32(hash));
         }
     }
 }
