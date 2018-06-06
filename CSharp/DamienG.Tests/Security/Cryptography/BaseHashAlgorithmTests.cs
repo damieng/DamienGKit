@@ -17,7 +17,7 @@ namespace DamienG.Tests.Security.Cryptography
         protected byte[] GetTestFileHash(string name, HashAlgorithm hashAlgorithm)
         {
             var pathToTests = CombinePaths(RunFolder, "Security", "Cryptography", "TestFiles");
-            using (var stream = File.Open(Path.Combine(pathToTests, name), FileMode.Open))
+            using (var stream = File.Open(Path.Combine(pathToTests, name), FileMode.Open, FileAccess.Read, FileShare.Read))
                 return hashAlgorithm.ComputeHash(stream);
         }
 
