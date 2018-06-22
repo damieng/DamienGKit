@@ -31,6 +31,9 @@ namespace DamienG.Security.Cryptography
 
         public Crc64(UInt64 polynomial, UInt64 seed)
         {
+            if (!BitConverter.IsLittleEndian)
+                throw new NotSupportedException("Not supported on Big Endian processors");
+
             table = InitializeTable(polynomial);
             this.seed = hash = seed;
         }

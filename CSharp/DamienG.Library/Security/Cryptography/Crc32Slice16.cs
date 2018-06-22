@@ -3,7 +3,9 @@
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 
 using System;
+using System.Diagnostics;
 using System.Security.Cryptography;
+using Newtonsoft.Json.Converters;
 
 namespace DamienG.Security.Cryptography
 {
@@ -41,6 +43,9 @@ namespace DamienG.Security.Cryptography
 
         public Crc32Slice16(UInt32 polynomial, UInt32 seed)
         {
+            if (!BitConverter.IsLittleEndian)
+                throw new NotSupportedException("Not supported on Big Endian processors");
+
             table = InitializeTable(polynomial);
             this.seed = hash = seed;
         }

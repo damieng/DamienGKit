@@ -18,6 +18,9 @@ namespace DamienG.Security.Cryptography
 
         public Elf32()
         {
+            if (!BitConverter.IsLittleEndian)
+                throw new NotSupportedException("Not supported on Big Endian processors");
+
             hash = 0;
         }
 
