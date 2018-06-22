@@ -1,7 +1,6 @@
 // Copyright (c) Damien Guard.  All rights reserved.
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. 
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
-// Originally published at http://damieng.com/blog/2006/08/08/calculating_crc32_in_c_and_net
 
 using System;
 using System.Security.Cryptography;
@@ -10,11 +9,11 @@ namespace DamienG.Security.Cryptography
 {
     /// <summary>
     /// Implements a 32-bit CRC hash algorithm compatible with Zip etc. 
-    /// This version uses the Slice-by-8 technique developed by Intel at 
-    /// https://sourceforge.net/projects/slicing-by-8/ and while C#/.NET doesn't 
+    /// This version uses the Slice-by-16 technique described at 
+    /// http://create.stephan-brumme.com/crc32/#slicing-by-16-overview and while C#/.NET doesn't 
     /// inline all of the performance benefits it does seem to perform slighly better.
-    /// It processes 8 bytes at a time using 8 lookup tables so the table size is increased
-    /// from 1KB to 8KB.  Data is read using two UInt32 conversions.  UInt64 did not seem to
+    /// It processes 16 bytes at a time using 16 lookup tables so the table size is increased
+    /// from 1KB to 16KB.  Data is read using two UInt32 conversions.  UInt64 did not seem to
     /// improve the speed.
     /// </summary>
     /// <remarks>
@@ -24,7 +23,7 @@ namespace DamienG.Security.Cryptography
     /// interface or remember that the result of one Compute call needs to be ~ (XOR) before
     /// being passed in as the seed for the next Compute call.
     /// </remarks>
-    public sealed class Crc32Slice8 : HashAlgorithm
+    public sealed class Crc32Slice16 : HashAlgorithm
     {
         public const UInt32 DefaultPolynomial = 0xedb88320u;
         public const UInt32 DefaultSeed = 0xffffffffu;
@@ -35,12 +34,12 @@ namespace DamienG.Security.Cryptography
         readonly UInt32[,] table;
         UInt32 hash;
 
-        public Crc32Slice8()
+        public Crc32Slice16()
             : this(DefaultPolynomial, DefaultSeed)
         {
         }
 
-        public Crc32Slice8(UInt32 polynomial, UInt32 seed)
+        public Crc32Slice16(UInt32 polynomial, UInt32 seed)
         {
             table = InitializeTable(polynomial);
             this.seed = hash = seed;
@@ -85,7 +84,7 @@ namespace DamienG.Security.Cryptography
             if (polynomial == DefaultPolynomial && defaultTable != null)
                 return defaultTable;
 
-            var table = new UInt32[8, 256];
+            var table = new UInt32[16, 256];
 
             // Compute normal CRC table
             for (var i = 0; i < 256; i++)
@@ -99,7 +98,7 @@ namespace DamienG.Security.Cryptography
                 table[0, i] = entry;
             }
 
-            // Slicing by 8 table
+            // Slicing by 16 table
             for (var i = 0; i < 256; i++)
             {
                 table[1, i] = (table[0, i] >> 8) ^ table[0, table[0, i] & 0xFF];
@@ -109,6 +108,14 @@ namespace DamienG.Security.Cryptography
                 table[5, i] = (table[4, i] >> 8) ^ table[0, table[4, i] & 0xFF];
                 table[6, i] = (table[5, i] >> 8) ^ table[0, table[5, i] & 0xFF];
                 table[7, i] = (table[6, i] >> 8) ^ table[0, table[6, i] & 0xFF];
+                table[8, i] = (table[7, i] >> 8) ^ table[0, table[7, i] & 0xFF];
+                table[9, i] = (table[8, i] >> 8) ^ table[0, table[8, i] & 0xFF];
+                table[10, i] = (table[9, i] >> 8) ^ table[0, table[9, i] & 0xFF];
+                table[11, i] = (table[10, i] >> 8) ^ table[0, table[10, i] & 0xFF];
+                table[12, i] = (table[11, i] >> 8) ^ table[0, table[11, i] & 0xFF];
+                table[13, i] = (table[12, i] >> 8) ^ table[0, table[12, i] & 0xFF];
+                table[14, i] = (table[13, i] >> 8) ^ table[0, table[13, i] & 0xFF];
+                table[15, i] = (table[14, i] >> 8) ^ table[0, table[14, i] & 0xFF];
             }
 
             if (polynomial == DefaultPolynomial)
@@ -126,21 +133,31 @@ namespace DamienG.Security.Cryptography
 
             unchecked
             {
-                while (length >= 8)
+                while (length >= 16)
                 {
                     var one = BitConverter.ToInt32(buffer, i) ^ hash;
                     var two = BitConverter.ToInt32(buffer, i + 4);
+                    var three = BitConverter.ToInt32(buffer, i + 8);
+                    var four = BitConverter.ToInt32(buffer, i + 12);
                     hash =
-                        table[0, (two >> 24) & 0xFF] ^
-                        table[1, (two >> 16) & 0xFF] ^
-                        table[2, (two >> 8) & 0xFF] ^
-                        table[3, two & 0xFF] ^
-                        table[4, (one >> 24) & 0xFF] ^
-                        table[5, (one >> 16) & 0xFF] ^
-                        table[6, (one >> 8) & 0xFF] ^
-                        table[7, one & 0xFF];
-                    length -= 8;
-                    i += 8;
+                        table[0, (four >> 24) & 0xFF] ^
+                        table[1, (four >> 16) & 0xFF] ^
+                        table[2, (four >> 8) & 0xFF] ^
+                        table[3, four & 0xFF] ^
+                        table[4, (three >> 24) & 0xFF] ^
+                        table[5, (three >> 16) & 0xFF] ^
+                        table[6, (three >> 8) & 0xFF] ^
+                        table[7, three & 0xFF] ^
+                        table[8, (two >> 24) & 0xFF] ^
+                        table[9, (two >> 16) & 0xFF] ^
+                        table[10, (two >> 8) & 0xFF] ^
+                        table[11, two & 0xFF] ^
+                        table[12, (one >> 24) & 0xFF] ^
+                        table[13, (one >> 16) & 0xFF] ^
+                        table[14, (one >> 8) & 0xFF] ^
+                        table[15, one & 0xFF];
+                    length -= 16;
+                    i += 16;
                 }
 
                 while (length-- != 0)
