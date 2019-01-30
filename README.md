@@ -10,7 +10,7 @@ This repository consists of various useful classes, templates and helpers from [
 
 ## Licence
 
-Copyright 2001-2013 Damien Guard.
+Copyright 2001-2019 Damien Guard.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 
