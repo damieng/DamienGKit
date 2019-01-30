@@ -131,7 +131,7 @@ class Manager {
                 return;
             base.Process(split, sync);
             if (sync)
-                projectSyncAction.EndInvoke(projectSyncAction.BeginInvoke(generatedFileNames, null, null));
+                projectSyncAction(generatedFileNames);
         }
 
         protected override void CreateFile(String fileName, String content) {
