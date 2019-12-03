@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace DamienG.System
 {
     /// <summary>
-    /// Provides a set of static methods for querying data structures that implement <see cref="T:System.Linq.IQueryable`1"/> in an asynchronous manner.
+    /// Provides a set of static methods for querying data structures that implement <see cref="T:IQueryable`1"/> in an asynchronous manner.
     /// </summary>
     public static class QueryableAsync
     {
@@ -28,7 +28,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">The source sequence is empty.</exception>
-        public static Task<TSource> FirstAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> FirstAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.First(), cancellationToken);
         }
@@ -46,7 +46,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="predicate"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">No element satisfies the condition in <paramref name="predicate"/>.-or-The source sequence is empty.</exception>
-        public static Task<TSource> FirstAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> FirstAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.First(predicate), cancellationToken);
         }
@@ -62,7 +62,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<TSource> FirstOrDefaultAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> FirstOrDefaultAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.FirstOrDefault(), cancellationToken);
         }
@@ -79,7 +79,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="predicate"/> is null.</exception>
-        public static Task<TSource> FirstOrDefaultAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> FirstOrDefaultAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.FirstOrDefault(predicate), cancellationToken);
         }
@@ -96,7 +96,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">The source sequence is empty.</exception>
-        public static Task<TSource> LastAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> LastAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Last(), cancellationToken);
         }
@@ -114,7 +114,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="predicate"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">No element satisfies the condition in <paramref name="predicate"/>.-or-The source sequence is empty.</exception>
-        public static Task<TSource> LastAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> LastAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Last(predicate), cancellationToken);
         }
@@ -130,7 +130,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<TSource> LastOrDefaultAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> LastOrDefaultAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.LastOrDefault(), cancellationToken);
         }
@@ -147,7 +147,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="predicate"/> is null.</exception>
-        public static Task<TSource> LastOrDefaultAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> LastOrDefaultAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.LastOrDefault(predicate), cancellationToken);
         }
@@ -165,7 +165,7 @@ namespace DamienG.System
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">
         /// <paramref name="source"/> has more than one element.</exception>
-        public static Task<TSource> SingleAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> SingleAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Single(), cancellationToken);
         }
@@ -183,7 +183,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="predicate"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">No element satisfies the condition in <paramref name="predicate"/>.-or-More than one element satisfies the condition in <paramref name="predicate"/>.-or-The source sequence is empty.</exception>
-        public static Task<TSource> SingleAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> SingleAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Single(predicate), cancellationToken);
         }
@@ -201,7 +201,7 @@ namespace DamienG.System
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">
         /// <paramref name="source"/> has more than one element.</exception>
-        public static Task<TSource> SingleOrDefaultAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> SingleOrDefaultAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.SingleOrDefault(), cancellationToken);
         }
@@ -219,7 +219,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="predicate"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">More than one element satisfies the condition in <paramref name="predicate"/>.</exception>
-        public static Task<TSource> SingleOrDefaultAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> SingleOrDefaultAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.SingleOrDefault(predicate), cancellationToken);
         }
@@ -238,7 +238,7 @@ namespace DamienG.System
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.ArgumentOutOfRangeException">
         /// <paramref name="index"/> is less than zero.</exception>
-        public static Task<TSource> ElementAtAsync<TSource>(this IQueryable<TSource> source, int index, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> ElementAtAsync<TSource>(this IQueryable<TSource> source, int index, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.ElementAt(index), cancellationToken);
         }
@@ -255,7 +255,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<TSource> ElementAtOrDefaultAsync<TSource>(this IQueryable<TSource> source, int index, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> ElementAtOrDefaultAsync<TSource>(this IQueryable<TSource> source, int index, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.ElementAtOrDefault(index), cancellationToken);
         }
@@ -272,7 +272,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<bool> ContainsAsync<TSource>(this IQueryable<TSource> source, TSource item, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<bool> ContainsAsync<TSource>(this IQueryable<TSource> source, TSource item, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Contains(item), cancellationToken);
         }
@@ -290,7 +290,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<bool> ContainsAsync<TSource>(this IQueryable<TSource> source, TSource item, IEqualityComparer<TSource> comparer, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<bool> ContainsAsync<TSource>(this IQueryable<TSource> source, TSource item, IEqualityComparer<TSource> comparer, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Contains(item, comparer), cancellationToken);
         }
@@ -307,7 +307,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of the input sequences.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source1"/> or <paramref name="source2"/> is null.</exception>
-        public static Task<bool> SequenceEqualAsync<TSource>(this IQueryable<TSource> source1, IEnumerable<TSource> source2, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<bool> SequenceEqualAsync<TSource>(this IQueryable<TSource> source1, IEnumerable<TSource> source2, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source1.SequenceEqual(source2), cancellationToken);
         }
@@ -325,7 +325,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of the input sequences.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source1"/> or <paramref name="source2"/> is null.</exception>
-        public static Task<bool> SequenceEqualAsync<TSource>(this IQueryable<TSource> source1, IEnumerable<TSource> source2, IEqualityComparer<TSource> comparer, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<bool> SequenceEqualAsync<TSource>(this IQueryable<TSource> source1, IEnumerable<TSource> source2, IEqualityComparer<TSource> comparer, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source1.SequenceEqual(source2, comparer), cancellationToken);
         }
@@ -341,7 +341,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<bool> AnyAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<bool> AnyAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Any(), cancellationToken);
         }
@@ -358,7 +358,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="predicate"/> is null.</exception>
-        public static Task<bool> AnyAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<bool> AnyAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Any(predicate), cancellationToken);
         }
@@ -375,7 +375,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="predicate"/> is null.</exception>
-        public static Task<bool> AllAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<bool> AllAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.All(predicate), cancellationToken);
         }
@@ -392,7 +392,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The number of elements in <paramref name="source"/> is larger than <see cref="F:System.Int32.MaxValue"/>.</exception>
-        public static Task<int> CountAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<int> CountAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Count(), cancellationToken);
         }
@@ -410,9 +410,9 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="predicate"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The number of elements in <paramref name="source"/> is larger than <see cref="F:System.Int32.MaxValue"/>.</exception>
-        public static Task<int> CountAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<int> CountAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default)
         {
-            return Task.Run(() => source.Count(), cancellationToken);
+            return Task.Run(() => source.Count(predicate), cancellationToken);
         }
 
         /// <summary>
@@ -427,7 +427,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The number of elements exceeds <see cref="F:System.Int64.MaxValue"/>.</exception>
-        public static Task<long> LongCountAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<long> LongCountAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.LongCount(), cancellationToken);
         }
@@ -445,7 +445,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="predicate"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The number of matching elements exceeds <see cref="F:System.Int64.MaxValue"/>.</exception>
-        public static Task<long> LongCountAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<long> LongCountAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.LongCount(predicate), cancellationToken);
         }
@@ -461,7 +461,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<TSource> MinAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> MinAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Min(), cancellationToken);
         }
@@ -479,7 +479,7 @@ namespace DamienG.System
         /// <typeparam name="TResult">The type of the value returned by the function represented by <paramref name="selector"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
-        public static Task<TResult> MinAsync<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TResult> MinAsync<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Min(selector), cancellationToken);
         }
@@ -495,7 +495,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<TSource> MaxAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> MaxAsync<TSource>(this IQueryable<TSource> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Max(), cancellationToken);
         }
@@ -513,7 +513,7 @@ namespace DamienG.System
         /// <typeparam name="TResult">The type of the value returned by the function represented by <paramref name="selector"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
-        public static Task<TResult> MaxAsync<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TResult> MaxAsync<TSource, TResult>(this IQueryable<TSource> source, Expression<Func<TSource, TResult>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Max(selector), cancellationToken);
         }
@@ -529,7 +529,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The sum is larger than <see cref="F:System.Int32.MaxValue"/>.</exception>
-        public static Task<int> SumAsync(this IQueryable<int> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<int> SumAsync(this IQueryable<int> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(), cancellationToken);
         }
@@ -545,7 +545,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The sum is larger than <see cref="F:System.Int32.MaxValue"/>.</exception>
-        public static Task<int?> SumAsync(this IQueryable<int?> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<int?> SumAsync(this IQueryable<int?> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(), cancellationToken);
         }
@@ -561,7 +561,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The sum is larger than <see cref="F:System.Int64.MaxValue"/>.</exception>
-        public static Task<long> SumAsync(this IQueryable<long> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<long> SumAsync(this IQueryable<long> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(), cancellationToken);
         }
@@ -577,7 +577,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The sum is larger than <see cref="F:System.Int64.MaxValue"/>.</exception>
-        public static Task<long?> SumAsync(this IQueryable<long?> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<long?> SumAsync(this IQueryable<long?> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(), cancellationToken);
         }
@@ -592,7 +592,7 @@ namespace DamienG.System
         /// <param name="cancellationToken">The optional <see cref="T:System.Threading.CancellationToken"/> which can be used to cancel this task.</param>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<float> SumAsync(this IQueryable<float> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<float> SumAsync(this IQueryable<float> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(), cancellationToken);
         }
@@ -607,7 +607,7 @@ namespace DamienG.System
         /// <param name="cancellationToken">The optional <see cref="T:System.Threading.CancellationToken"/> which can be used to cancel this task.</param>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<float?> SumAsync(this IQueryable<float?> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<float?> SumAsync(this IQueryable<float?> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(), cancellationToken);
         }
@@ -622,7 +622,7 @@ namespace DamienG.System
         /// <param name="cancellationToken">The optional <see cref="T:System.Threading.CancellationToken"/> which can be used to cancel this task.</param>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<double> SumAsync(this IQueryable<double> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double> SumAsync(this IQueryable<double> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(), cancellationToken);
         }
@@ -637,7 +637,7 @@ namespace DamienG.System
         /// <param name="cancellationToken">The optional <see cref="T:System.Threading.CancellationToken"/> which can be used to cancel this task.</param>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<double?> SumAsync(this IQueryable<double?> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double?> SumAsync(this IQueryable<double?> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(), cancellationToken);
         }
@@ -653,7 +653,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The sum is larger than <see cref="F:System.Decimal.MaxValue"/>.</exception>
-        public static Task<decimal> SumAsync(this IQueryable<decimal> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<decimal> SumAsync(this IQueryable<decimal> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(), cancellationToken);
         }
@@ -669,7 +669,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The sum is larger than <see cref="F:System.Decimal.MaxValue"/>.</exception>
-        public static Task<decimal?> SumAsync(this IQueryable<decimal?> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<decimal?> SumAsync(this IQueryable<decimal?> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(), cancellationToken);
         }
@@ -687,7 +687,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The sum is larger than <see cref="F:System.Int32.MaxValue"/>.</exception>
-        public static Task<int> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, int>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<int> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, int>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(selector), cancellationToken);
         }
@@ -705,7 +705,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The sum is larger than <see cref="F:System.Int32.MaxValue"/>.</exception>
-        public static Task<int?> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, int?>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<int?> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, int?>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(selector), cancellationToken);
         }
@@ -723,7 +723,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The sum is larger than <see cref="F:System.Int64.MaxValue"/>.</exception>
-        public static Task<long> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, long>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<long> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, long>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(selector), cancellationToken);
         }
@@ -741,7 +741,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The sum is larger than <see cref="F:System.Int64.MaxValue"/>.</exception>
-        public static Task<long?> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, long?>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<long?> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, long?>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(selector), cancellationToken);
         }
@@ -758,7 +758,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
-        public static Task<float> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, float>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<float> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, float>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(selector), cancellationToken);
         }
@@ -775,7 +775,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
-        public static Task<float?> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, float?>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<float?> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, float?>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(selector), cancellationToken);
         }
@@ -792,7 +792,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
-        public static Task<double> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, double>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, double>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(selector), cancellationToken);
         }
@@ -809,7 +809,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
-        public static Task<double?> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, double?>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double?> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, double?>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(selector), cancellationToken);
         }
@@ -827,7 +827,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The sum is larger than <see cref="F:System.Decimal.MaxValue"/>.</exception>
-        public static Task<decimal> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, decimal>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<decimal> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, decimal>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(selector), cancellationToken);
         }
@@ -845,7 +845,7 @@ namespace DamienG.System
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
         /// <exception cref="T:System.OverflowException">The sum is larger than <see cref="F:System.Decimal.MaxValue"/>.</exception>
-        public static Task<decimal?> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, decimal?>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<decimal?> SumAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, decimal?>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Sum(selector), cancellationToken);
         }
@@ -862,7 +862,7 @@ namespace DamienG.System
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">
         /// <paramref name="source"/> contains no elements.</exception>
-        public static Task<double> AverageAsync(this IQueryable<int> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double> AverageAsync(this IQueryable<int> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(), cancellationToken);
         }
@@ -877,7 +877,7 @@ namespace DamienG.System
         /// <param name="cancellationToken">The optional <see cref="T:System.Threading.CancellationToken"/> which can be used to cancel this task.</param>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<double?> AverageAsync(this IQueryable<int?> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double?> AverageAsync(this IQueryable<int?> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(), cancellationToken);
         }
@@ -894,7 +894,7 @@ namespace DamienG.System
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">
         /// <paramref name="source"/> contains no elements.</exception>
-        public static Task<double> AverageAsync(this IQueryable<long> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double> AverageAsync(this IQueryable<long> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(), cancellationToken);
         }
@@ -909,7 +909,7 @@ namespace DamienG.System
         /// <param name="cancellationToken">The optional <see cref="T:System.Threading.CancellationToken"/> which can be used to cancel this task.</param>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<double?> AverageAsync(this IQueryable<long?> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double?> AverageAsync(this IQueryable<long?> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(), cancellationToken);
         }
@@ -926,7 +926,7 @@ namespace DamienG.System
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">
         /// <paramref name="source"/> contains no elements.</exception>
-        public static Task<float> AverageAsync(this IQueryable<float> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<float> AverageAsync(this IQueryable<float> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(), cancellationToken);
         }
@@ -941,7 +941,7 @@ namespace DamienG.System
         /// <param name="cancellationToken">The optional <see cref="T:System.Threading.CancellationToken"/> which can be used to cancel this task.</param>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<float?> AverageAsync(this IQueryable<float?> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<float?> AverageAsync(this IQueryable<float?> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(), cancellationToken);
         }
@@ -958,7 +958,7 @@ namespace DamienG.System
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">
         /// <paramref name="source"/> contains no elements.</exception>
-        public static Task<double> AverageAsync(this IQueryable<double> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double> AverageAsync(this IQueryable<double> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(), cancellationToken);
         }
@@ -973,7 +973,7 @@ namespace DamienG.System
         /// <param name="cancellationToken">The optional <see cref="T:System.Threading.CancellationToken"/> which can be used to cancel this task.</param>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<double?> AverageAsync(this IQueryable<double?> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double?> AverageAsync(this IQueryable<double?> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(), cancellationToken);
         }
@@ -990,7 +990,7 @@ namespace DamienG.System
         /// <paramref name="source"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">
         /// <paramref name="source"/> contains no elements.</exception>
-        public static Task<decimal> AverageAsync(this IQueryable<decimal> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<decimal> AverageAsync(this IQueryable<decimal> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(), cancellationToken);
         }
@@ -1005,7 +1005,7 @@ namespace DamienG.System
         /// <param name="cancellationToken">The optional <see cref="T:System.Threading.CancellationToken"/> which can be used to cancel this task.</param>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> is null.</exception>
-        public static Task<decimal?> AverageAsync(this IQueryable<decimal?> source, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<decimal?> AverageAsync(this IQueryable<decimal?> source, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(), cancellationToken);
         }
@@ -1024,7 +1024,7 @@ namespace DamienG.System
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">
         /// <paramref name="source"/> contains no elements.</exception>
-        public static Task<double> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, int>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, int>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(selector), cancellationToken);
         }
@@ -1041,7 +1041,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
-        public static Task<double?> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, int?>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double?> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, int?>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(selector), cancellationToken);
         }
@@ -1060,7 +1060,7 @@ namespace DamienG.System
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">
         /// <paramref name="source"/> contains no elements.</exception>
-        public static Task<float> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, float>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<float> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, float>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(selector), cancellationToken);
         }
@@ -1077,7 +1077,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
-        public static Task<float?> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, float?>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<float?> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, float?>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(selector), cancellationToken);
         }
@@ -1096,7 +1096,7 @@ namespace DamienG.System
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">
         /// <paramref name="source"/> contains no elements.</exception>
-        public static Task<double> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, long>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, long>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(selector), cancellationToken);
         }
@@ -1113,7 +1113,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
-        public static Task<double?> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, long?>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double?> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, long?>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(selector), cancellationToken);
         }
@@ -1132,7 +1132,7 @@ namespace DamienG.System
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">
         /// <paramref name="source"/> contains no elements.</exception>
-        public static Task<double> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, double>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, double>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(selector), cancellationToken);
         }
@@ -1149,7 +1149,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
-        public static Task<double?> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, double?>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<double?> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, double?>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(selector), cancellationToken);
         }
@@ -1168,7 +1168,7 @@ namespace DamienG.System
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">
         /// <paramref name="source"/> contains no elements.</exception>
-        public static Task<decimal> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, decimal>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<decimal> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, decimal>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(selector), cancellationToken);
         }
@@ -1185,7 +1185,7 @@ namespace DamienG.System
         /// <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="selector"/> is null.</exception>
-        public static Task<decimal?> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, decimal?>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<decimal?> AverageAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, decimal?>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Average(selector), cancellationToken);
         }
@@ -1204,7 +1204,7 @@ namespace DamienG.System
         /// <paramref name="source"/> or <paramref name="func"/> is null.</exception>
         /// <exception cref="T:System.InvalidOperationException">
         /// <paramref name="source"/> contains no elements.</exception>
-        public static Task<TSource> AggregateAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, TSource, TSource>> func, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TSource> AggregateAsync<TSource>(this IQueryable<TSource> source, Expression<Func<TSource, TSource, TSource>> func, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Aggregate(func), cancellationToken);
         }
@@ -1223,7 +1223,7 @@ namespace DamienG.System
         /// <typeparam name="TAccumulate">The type of the accumulator value.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="func"/> is null.</exception>
-        public static Task<TAccumulate> AggregateAsync<TSource, TAccumulate>(this IQueryable<TSource> source, TAccumulate seed, Expression<Func<TAccumulate, TSource, TAccumulate>> func, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TAccumulate> AggregateAsync<TSource, TAccumulate>(this IQueryable<TSource> source, TAccumulate seed, Expression<Func<TAccumulate, TSource, TAccumulate>> func, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Aggregate(seed, func), cancellationToken);
         }
@@ -1244,7 +1244,7 @@ namespace DamienG.System
         /// <typeparam name="TResult">The type of the resulting value.</typeparam>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source"/> or <paramref name="func"/> or <paramref name="selector"/> is null.</exception>
-        public static Task<TResult> AggregateAsync<TSource, TAccumulate, TResult>(this IQueryable<TSource> source, TAccumulate seed, Expression<Func<TAccumulate, TSource, TAccumulate>> func, Expression<Func<TAccumulate, TResult>> selector, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<TResult> AggregateAsync<TSource, TAccumulate, TResult>(this IQueryable<TSource> source, TAccumulate seed, Expression<Func<TAccumulate, TSource, TAccumulate>> func, Expression<Func<TAccumulate, TResult>> selector, CancellationToken cancellationToken = default)
         {
             return Task.Run(() => source.Aggregate(seed, func, selector), cancellationToken);
         }

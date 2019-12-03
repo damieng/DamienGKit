@@ -38,14 +38,14 @@ namespace DamienG.System.Binary
             var column = 0;
             string nextOutput = null;
 
-            Action checkForEndOfLine = () =>
+            void checkForEndOfLine()
             {
                 if (column + nextOutput.Length >= maxLineLength)
                 {
                     sb.Append("=\n");
                     column = 0;
                 }
-            };
+            }
 
             foreach (var b in bytes)
             {
@@ -64,7 +64,7 @@ namespace DamienG.System.Binary
 
         public override byte[] Decode(string input)
         {
-            var output = new List<Byte>();
+            var output = new List<byte>();
             for (var textIndex = 0; textIndex < input.Length; textIndex++)
             {
                 var t = input[textIndex];
@@ -74,7 +74,7 @@ namespace DamienG.System.Binary
                     switch (input.Length - textIndex)
                     {
                         case 1:
-                            throw new ArgumentOutOfRangeException("input", "Only one character found after = sign - is data truncated?");
+                            throw new ArgumentOutOfRangeException(nameof(input), "Only one character found after = sign - is data truncated?");
 
                         case 0:
                             break;
@@ -112,7 +112,7 @@ namespace DamienG.System.Binary
             if (a >= 'A' && a <= 'F')
                 return a - 'A' + 10;
 
-            throw new ArgumentOutOfRangeException("a", String.Format("Character {0} is not hexadecimal", a));
+            throw new ArgumentOutOfRangeException(nameof(a), string.Format("Character {0} is not hexadecimal", a));
         }
     }
 }

@@ -32,7 +32,7 @@ namespace DamienG.System
 
         public static T ContainsOrDefault<T>(this IEnumerable<T> source, T value)
         {
-            return source.Contains(value) ? value : default(T);
+            return source.Contains(value) ? value : default;
         }
 
         public static T RandomElement<T>(this ICollection<T> collection)
@@ -43,7 +43,7 @@ namespace DamienG.System
         public static TResult FirstOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, bool> predicate, Func<TSource, TResult> selector)
         {
             var match = source.FirstOrDefault(predicate);
-            return Equals(match, default(TSource)) ? default(TResult) : selector(match);
+            return Equals(match, default(TSource)) ? default : selector(match);
         }
     }
 }

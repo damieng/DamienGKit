@@ -20,7 +20,7 @@ namespace DamienG.System
         public static int GetAge(this DateTime birthDate, DateTime at)
         {
             if (at < birthDate)
-                throw new ArgumentOutOfRangeException("at", "At date can not be before birthDate");
+                throw new ArgumentOutOfRangeException(nameof(at), "At date can not be before birthDate");
 
             var hadBirthday = birthDate.Month < at.Month
                 || (birthDate.Month == at.Month && birthDate.Day <= at.Day);

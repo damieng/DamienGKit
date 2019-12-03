@@ -90,7 +90,7 @@ namespace DamienG.Security.Cryptography
                     if ((entry & 1) == 1)
                         entry = (entry >> 1) ^ polynomial;
                     else
-                        entry = entry >> 1;
+                        entry >>= 1;
                 createTable[i] = entry;
             }
 

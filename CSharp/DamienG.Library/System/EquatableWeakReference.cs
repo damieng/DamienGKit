@@ -20,7 +20,7 @@ namespace DamienG.System
         public EquatableWeakReference(T target)
         {
             if (target == null)
-                throw new ArgumentNullException("target");
+                throw new ArgumentNullException(nameof(target));
             hashCode = target.GetHashCode();
             handle = GCHandle.Alloc(target, GCHandleType.Weak);
         }

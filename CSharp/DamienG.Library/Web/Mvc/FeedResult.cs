@@ -23,10 +23,7 @@ namespace DamienG.Web.Mvc
 
         public FeedResult(SyndicationFeedFormatter feed)
         {
-            if (feed == null)
-                throw new ArgumentNullException("feed");
-
-            this.feed = feed;
+            this.feed = feed ?? throw new ArgumentNullException(nameof(feed));
         }
 
         public SyndicationFeedFormatter Feed
@@ -37,7 +34,7 @@ namespace DamienG.Web.Mvc
         public override void ExecuteResult(ControllerContext context)
         {
             if (context == null)
-                throw new ArgumentNullException("context");
+                throw new ArgumentNullException(nameof(context));
 
             var response = context.HttpContext.Response;
             response.ContentType = !string.IsNullOrEmpty(ContentType) ? ContentType : "application/rss+xml";

@@ -9,10 +9,6 @@ using System.Collections.Generic;
 
 namespace DamienG.Collections.Generic
 {
-    /// <summary>
-    /// A list that can be observed for change or clear events.
-    /// </summary>
-    /// <typeparam name="T">Type of items in the list.</typeparam>
     public class ObservableList<T> : IList<T>
     {
         readonly IList<T> internalList;
@@ -24,16 +20,13 @@ namespace DamienG.Collections.Generic
 
         public ObservableList(IList<T> list)
         {
-            if (list == null)
-                throw new ArgumentNullException("list");
-
-            internalList = list;
+            internalList = list ?? throw new ArgumentNullException(nameof(list));
         }
 
         public ObservableList(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             internalList = new List<T>(collection);
         }
@@ -139,24 +132,15 @@ namespace DamienG.Collections.Generic
 
         public class ListChangedEventArgs : EventArgs
         {
-            readonly int index;
-            readonly T item;
-
             internal ListChangedEventArgs(int index, T item)
             {                
-                this.index = index;
-                this.item = item;
+                Index = index;
+                Item = item;
             }
 
-            public int Index
-            {
-                get { return index; }
-            }
+            public int Index { get; }
 
-            public T Item
-            {
-                get { return item; }
-            }
+            public T Item { get; }
         }
     }
 }

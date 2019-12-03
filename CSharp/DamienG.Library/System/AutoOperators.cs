@@ -49,9 +49,9 @@ namespace DamienG.System
         {
             if (ReferenceEquals(obj1, obj2))
                 return 0;
-            if ((object) obj1 == null)
+            if (obj1 is null)
                 return -1;
-            if ((object) obj2 == null)
+            if (obj2 is null)
                 return 1;
             return obj1.CompareTo(obj2);
         }

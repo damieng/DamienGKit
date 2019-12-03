@@ -48,7 +48,7 @@ namespace DamienG.Security.Cryptography
             return CalculateHash(0, buffer, 0, buffer.Length);
         }
 
-        public static UInt32 Compute(UInt32 polynomial, UInt32 seed, byte[] buffer)
+        public static UInt32 Compute(UInt32 seed, byte[] buffer)
         {
             return CalculateHash(seed, buffer, 0, buffer.Length);
         }

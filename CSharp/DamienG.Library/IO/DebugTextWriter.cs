@@ -1,9 +1,8 @@
-﻿﻿// Copyright (c) Damien Guard.  All rights reserved.
+﻿// Copyright (c) Damien Guard.  All rights reserved.
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. 
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 // Originally published at http://damieng.com/blog/2008/07/30/linq-to-sql-log-to-debug-window-file-memory-or-multiple-writers
 
-using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -22,7 +21,7 @@ namespace DamienG.IO
 
         public override void Write(char[] buffer, int index, int count)
         {
-            Debug.Write(new String(buffer, index, count));
+            Debug.Write(new string(buffer, index, count));
         }
 
         public override void Write(string value)

@@ -24,7 +24,7 @@ namespace DamienG.System.Binary
         public override byte[] Decode(string input)
         {
             if (input.Length % 2 == 1)
-                throw new ArgumentOutOfRangeException("input", "Must be an even number of hex digits");
+                throw new ArgumentOutOfRangeException(nameof(input), "Must be an even number of hex digits");
 
             var output = new byte[input.Length / 2];
             var textIndex = 0;
@@ -47,7 +47,7 @@ namespace DamienG.System.Binary
             if (a >= 'A' && a <= 'F')
                 return a - 'A' + 10;
 
-            throw new ArgumentOutOfRangeException("a", String.Format("Character {0} is not hexadecimal", a));
+            throw new ArgumentOutOfRangeException(nameof(a), string.Format("Character {0} is not hexadecimal", a));
         }
     }
 }
