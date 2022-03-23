@@ -5,7 +5,6 @@
 using System;
 using System.Diagnostics;
 using System.Security.Cryptography;
-using Newtonsoft.Json.Converters;
 
 namespace DamienG.Security.Cryptography
 {

@@ -80,7 +80,7 @@ namespace DamienG.Tests.Collections.Generic
         public void ConstructorGivenNothingCreatesAList()
         {
             var observableList = new ObservableList<byte>();
-            Assert.Equal(0, observableList.Count);
+            Assert.Empty(observableList);
         }
 
         [Fact]

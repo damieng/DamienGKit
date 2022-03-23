@@ -4,18 +4,18 @@ This repository consists of various useful classes, templates and helpers from [
 
 ## Contents
 
-* **CSharp** Useful classes in the C# language
-* **T4**	Various templates for the T4 templating system
-* **Powershell/SourceTree** Scripts to integrate SourceTree with GitHub
+- **CSharp** Useful classes in the C# language
+- **T4** Various templates for the T4 templating system
+- **Powershell/SourceTree** Scripts to integrate SourceTree with GitHub
 
 ## Licence
 
-Copyright 2001-2019 Damien Guard.
+Copyright 2001-2022 Damien Guard.
 
 Licensed under either of
 
- * Apache License, Version 2.0, ([LICENSE-APACHE.txt](LICENSE-APACHE.txt) or http://www.apache.org/licenses/LICENSE-2.0)
- * MIT license ([LICENSE-MIT.txt](LICENSE-MIT.txt) or http://opensource.org/licenses/MIT)
+- Apache License, Version 2.0, ([LICENSE-APACHE.txt](LICENSE-APACHE.txt) or http://www.apache.org/licenses/LICENSE-2.0)
+- MIT license ([LICENSE-MIT.txt](LICENSE-MIT.txt) or http://opensource.org/licenses/MIT)
 
 at your option.
 

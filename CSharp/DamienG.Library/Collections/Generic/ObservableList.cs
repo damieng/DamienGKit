@@ -11,6 +11,7 @@ namespace DamienG.Collections.Generic
 {
     public class ObservableList<T> : IList<T>
     {
+        readonly object _lock = new object();
         readonly IList<T> internalList;
 
         public ObservableList()
@@ -95,7 +96,7 @@ namespace DamienG.Collections.Generic
 
         public bool Remove(T item)
         {
-            lock (this)
+            lock (_lock)
             {
                 var index = internalList.IndexOf(item);
                 if (internalList.Remove(item))
