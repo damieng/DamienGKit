@@ -9,10 +9,14 @@ using System.IO;
 namespace DamienG.IO
 {
     /// <summary>
-    /// A StreamReader that adds line number and character position tracking.
+    /// A <see cref="StreamReader"/> that tracks the line number and character position as it is read.
     /// </summary>
     public class LineTrackingStreamReader : StreamReader
     {
+        /// <summary>
+        /// Create a new instance of <seealso cref="LineTrackingStreamReader"/>.
+        /// </summary>
+        /// <param name="stream">The <see cref="Stream"/> to track line reading on.</param>
         public LineTrackingStreamReader(Stream stream)
             : base(stream)
         {
@@ -20,10 +24,17 @@ namespace DamienG.IO
             CharacterPosition = 0;
         }
 
+        /// <summary>
+        /// The current character position within the line.
+        /// </summary>
         public int CharacterPosition { get; private set; }
 
+        /// <summary>
+        /// The current line number.
+        /// </summary>
         public int LineNumber { get; private set; }
 
+        /// <inheritdoc/>
         public override string ReadLine()
         {
             var readLine = base.ReadLine();
@@ -35,6 +46,7 @@ namespace DamienG.IO
             return readLine;
         }
 
+        /// <inheritdoc/>
         public override int Read()
         {
             var read = base.Read();
@@ -54,6 +66,7 @@ namespace DamienG.IO
             return read;
         }
 
+        /// <inheritdoc/>
         public override int ReadBlock(char[] buffer, int index, int count)
         {
             var readBlock = base.ReadBlock(buffer, index, count);
@@ -63,6 +76,7 @@ namespace DamienG.IO
             return readBlock;
         }
 
+        /// <inheritdoc/>
         public override int Read(char[] buffer, int index, int count)
         {
             var read = base.Read(buffer, index, count);
@@ -72,6 +86,7 @@ namespace DamienG.IO
             return read;
         }
 
+        /// <inheritdoc/>
         void TrackPosition(IList<char> buffer, int index, int count)
         {
             for (var i = index; i < count; i++)

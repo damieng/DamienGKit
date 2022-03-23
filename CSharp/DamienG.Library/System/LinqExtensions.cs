@@ -9,7 +9,7 @@ using System.Linq;
 namespace DamienG.System
 {
     /// <summary>
-    /// Various LINQ extensions for IEnumerable sequences.
+    /// Various LINQ extensions for <see cref="IEnumerable{T}"/> sequences.
     /// </summary>
     public static class LinqExtensions
     {

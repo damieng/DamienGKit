@@ -10,23 +10,17 @@ using System.Text;
 namespace DamienG.IO
 {
     /// <summary>
-    /// A TextWriter that writes to the Debug window.
+    /// A <see cref="TextWriter"/> that writes to the <see cref="Debug"/> window.
     /// </summary>
     public class DebugTextWriter : TextWriter
     {
-        public override Encoding Encoding
-        {
-            get { return Encoding.Default; }
-        }
+        /// <inheritdoc/>
+        public override Encoding Encoding => Encoding.Default;
 
-        public override void Write(char[] buffer, int index, int count)
-        {
-            Debug.Write(new string(buffer, index, count));
-        }
+        /// <inheritdoc/>
+        public override void Write(char[] buffer, int index, int count) => Debug.Write(new string(buffer, index, count));
 
-        public override void Write(string value)
-        {
-            Debug.Write(value);
-        }
+        /// <inheritdoc/>
+        public override void Write(string value) => Debug.Write(value);
     }
 }

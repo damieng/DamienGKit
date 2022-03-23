@@ -12,15 +12,30 @@ namespace DamienG.System
     /// </summary>
     public static class DateExtensions
     {
+        /// <summary>
+        /// Calculate the age for somebody given their birthday.
+        /// </summary>
+        /// <param name="birthDate">Date of birth.</param>
+        /// <returns>Age in years.</returns>
+        /// <remarks>As always time zones can mean this is off if today is their birthday.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">If not yet born.</exception>
         public static int GetAge(this DateTime birthDate)
         {
             return GetAge(birthDate, DateTime.Now);
         }
 
+        /// <summary>
+        /// Calculate the age for somebody given their birthday from a specific date.
+        /// </summary>
+        /// <param name="birthDate">Date of birth.</param>
+        /// <param name="at">When to consider from - often <see cref="DateTime.Now"/></param>
+        /// <returns>Age in years.</returns>
+        /// <remarks>As always time zones can mean this is off if today is their birthday.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">If not yet born.</exception>
         public static int GetAge(this DateTime birthDate, DateTime at)
         {
             if (at < birthDate)
-                throw new ArgumentOutOfRangeException(nameof(at), "At date can not be before birthDate");
+                throw new ArgumentOutOfRangeException(nameof(at), "At date must not be before birthDate");
 
             var hadBirthday = birthDate.Month < at.Month
                 || (birthDate.Month == at.Month && birthDate.Day <= at.Day);

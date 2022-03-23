@@ -3,7 +3,6 @@
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 
 using System;
-using System.Diagnostics;
 using System.Security.Cryptography;
 
 namespace DamienG.Security.Cryptography

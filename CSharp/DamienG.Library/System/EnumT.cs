@@ -21,30 +21,15 @@ namespace DamienG.System
         static readonly Dictionary<int, T> values = all.ToDictionary(k => Convert.ToInt32(k));
         static readonly Dictionary<T, string> names = all.ToDictionary(k => k, v => v.ToString());
 
-        public static bool IsDefined(T value)
-        {
-            return names.Keys.Contains(value);
-        }
+        public static bool IsDefined(T value) => names.Keys.Contains(value);
 
-        public static bool IsDefined(string value)
-        {
-            return sensitiveNames.Keys.Contains(value);
-        }
+        public static bool IsDefined(string value) => sensitiveNames.Keys.Contains(value);
 
-        public static bool IsDefined(int value)
-        {
-            return values.Keys.Contains(value);
-        }
+        public static bool IsDefined(int value) => values.Keys.Contains(value);
 
-        public static IEnumerable<T> GetValues()
-        {
-            return all;
-        }
+        public static IEnumerable<T> GetValues() => all;
 
-        public static string[] GetNames()
-        {
-            return names.Values.ToArray();
-        }
+        public static string[] GetNames() => names.Values.ToArray();
 
         public static string GetName(T value)
         {
@@ -69,10 +54,7 @@ namespace DamienG.System
             return parsed;
         }
 
-        public static bool TryParse(string value, out T returnValue)
-        {
-            return sensitiveNames.TryGetValue(value, out returnValue);
-        }
+        public static bool TryParse(string value, out T returnValue) => sensitiveNames.TryGetValue(value, out returnValue);
 
         public static bool TryParse(string value, bool ignoreCase, out T returnValue)
         {

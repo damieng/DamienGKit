@@ -37,7 +37,8 @@ namespace DamienG.System
 
         public void Dispose()
         {
-            handle.Free();
+            if (handle.IsAllocated)
+                handle.Free();
             GC.SuppressFinalize(this);
         }
 
@@ -51,14 +52,13 @@ namespace DamienG.System
             Dispose();
         }
 
+        /// </inheritdoc>
         public override bool Equals(object obj)
         {
-            if (obj is EquatableWeakReference<T>)
-                return Equals((EquatableWeakReference<T>) obj);
-
-            return false;
+            return obj is EquatableWeakReference<T> reference && Equals(reference);
         }
 
+        /// </inheritdoc>
         public override int GetHashCode()
         {
             return hashCode;

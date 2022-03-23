@@ -10,39 +10,53 @@ using System.Text;
 namespace DamienG.IO
 {
     /// <summary>
-    /// A TextWriter that can multicast output to other TextWriters.
+    /// A <see cref="TextWriter"/> that can multicast output to multiple <see cref="TextWriter"/> instances.
     /// </summary>
     public class MulticastTextWriter : TextWriter
     {
         readonly IList<TextWriter> textWriters;
 
+        /// <summary>
+        /// Create a new instance of <see cref="MulticastTextWriter"/>.
+        /// </summary>
         public MulticastTextWriter()
             : this(new List<TextWriter>())
         {
         }
 
+        /// <summary>
+        /// Create a new instance of <see cref="MulticastTextWriter"/>.
+        /// </summary>
+        /// <param name="textWriters">The <see cref="TextWriter"/> instances to use.</param>
         public MulticastTextWriter(IList<TextWriter> textWriters)
         {
-            this.textWriters = textWriters;
+            this.textWriters = new List<TextWriter>(textWriters);
         }
 
-        public override Encoding Encoding
-        {
-            get { return Encoding.Default; }
-        }
+        /// <inheritdoc/>
+        public override Encoding Encoding => Encoding.Default;
 
+        /// <summary>
+        /// Add another <see cref="TextWriter"/> to the multiplexor.
+        /// </summary>
+        /// <param name="textWriter">The <see cref="TextWriter"/> to add.</param>
         public void Add(TextWriter textWriter)
         {
             lock (textWriters)
                 textWriters.Add(textWriter);
         }
 
+        /// <summary>
+        /// Remove an existing <see cref="TextWriter"/> from the multiplexor.
+        /// </summary>
+        /// <param name="textWriter">The <see cref="TextWriter"/> to remove.</param>
         public bool Remove(TextWriter textWriter)
         {
             lock (textWriters)
                 return textWriters.Remove(textWriter);
         }
 
+        /// <inheritdoc/>
         public override void Write(char[] buffer, int index, int count)
         {
             lock (textWriters)

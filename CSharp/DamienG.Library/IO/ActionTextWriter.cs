@@ -10,30 +10,28 @@ using System.Text;
 namespace DamienG.IO
 {
     /// <summary>
-    /// A TextWriter that can delegate the writing to any Action that takes a string.
+    /// A <see cref="TextWriter"/> that delegates the writing to an <see cref="Action"/> that takes a string.
     /// </summary>
     public class ActionTextWriter : TextWriter
     {
         readonly Action<string> action;
 
+        /// <summary>
+        /// Create a new instance of <see cref="ActionTextWriter"/>.
+        /// </summary>
+        /// <param name="action">The <see cref="Action{String}"/> to call every time text should be written.</param>
         public ActionTextWriter(Action<string> action)
         {
             this.action = action;
         }
 
-        public override Encoding Encoding
-        {
-            get { return Encoding.Default; }
-        }
+        /// <inheritdoc/>
+        public override Encoding Encoding => Encoding.Default;
 
-        public override void Write(char[] buffer, int index, int count)
-        {
-            Write(new string(buffer, index, count));
-        }
+        /// <inheritdoc/>
+        public override void Write(char[] buffer, int index, int count) => Write(new string(buffer, index, count));
 
-        public override void Write(string value)
-        {
-            action(value);
-        }
+        /// <inheritdoc/>
+        public override void Write(string value) => action(value);
     }
 }
